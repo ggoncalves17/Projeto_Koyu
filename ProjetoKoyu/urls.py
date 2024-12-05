@@ -17,6 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from ProjetoKoyu_App import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('adicionarExercicio/', views.AdicionarExercicioView.as_view(), name='Adicionar-Exercicio'),
+    path('adicionarTreino/', views.AdicionarTreinoView.as_view(), name='Adicionar-Treino'),
 ]
