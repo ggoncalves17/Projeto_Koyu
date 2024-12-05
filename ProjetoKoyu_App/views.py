@@ -13,3 +13,6 @@ class AdicionarTreinoView(CreateView):
     model = models.AdicionarTreinoModel
     fields = ['title', 'description']
     template_name = 'ProjetoKoyu_App/adicionarTreino-form.html'
+    
+def homepage(request):
+    return render(request, 'projeto_koyu/index.html', context={'message': 'Bem-vindo!'})
