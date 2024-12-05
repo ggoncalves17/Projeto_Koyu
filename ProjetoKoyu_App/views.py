@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def adicionar_utilizador(request):
+    return render(request, 'adicionar_utilizador.html')
