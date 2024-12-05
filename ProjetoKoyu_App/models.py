@@ -32,27 +32,6 @@ from django.db import models
 
 # Create your models here.
 
-class Categoria(models.Model): 
-  ca_nome = models.CharField(max_length=512) 
-  ca_foto = models.CharField(max_length=512) 
-  categoria_planostreino = models.ManyToManyField(PlanosTreinos)
-
-class series_planostreino(models.Model):
-  sr_series = models.IntegerField()
-  sr_repeticoes = models.IntegerField()
-  sr_tempo = models.FloatField()
-  exercicios = models.ForeignKey(Exercicios, on_delete=models.CASCADE)
-  planotreinos = models.ForeignKey(PlanoTreinos, on_delete=models.CASCADE) 
-
-class Exercicios(models.Model):
-  ex_nome = models.CharField(max_length=512) 
-  ex_descricao = models.CharField(max_length=512) 
-  ex_intensidade = models.CharField(max_length=512) 
-  ex_foto = models.CharField(max_length=512) 
-  ex_video = models.CharField(max_length=512)
-  excercicios_categoria = models.ManyToManyField(Categoria)
-  equipamento = models.ForeignKey(Equipamento, on_delete=models.CASCADE) 
-
 class Equipamento(models.Model): 
   eq_nome = models.CharField(max_length=512) 
   eq_foto = models.CharField(max_length=512) 
@@ -67,7 +46,11 @@ class Utilizador(models.Model):
   ut_tipo = models.CharField(max_length=512)
   ut_nif = models.IntegerField()
 
-class PlanoTreinos:
+class Modalidade(models.Model): 
+  ca_nome = models.CharField(max_length=512) 
+  ca_foto = models.CharField(max_length=512) 
+
+class PlanoTreinos(models.Model):
   pt_nome = models.CharField(max_length=512)
   pt_foto = models.CharField(max_length=512)
   descricao = models.CharField(max_length=512)
@@ -75,13 +58,29 @@ class PlanoTreinos:
   duracao = models.IntegerField()
   equipamento = models.BooleanField()
   modalidade = models.ForeignKey(Modalidade, on_delete=models.CASCADE)
-  categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE) 
-  
-class ModalidadeCategoria(models.Model): 
-  ca_nome = models.CharField(max_length=512) 
-  ca_foto = models.CharField(max_length=512) 
 
 class Historico(models.Model):
   hi_data = models.DateField()
   utilizador = models.ForeignKey(Utilizador, on_delete=models.CASCADE)
+  planotreinos = models.ForeignKey(PlanoTreinos, on_delete=models.CASCADE) 
+
+class Categoria(models.Model): 
+  ca_nome = models.CharField(max_length=512) 
+  ca_foto = models.CharField(max_length=512) 
+  categoria_planostreino = models.ManyToManyField(PlanoTreinos)
+
+class Exercicios(models.Model):
+  ex_nome = models.CharField(max_length=512) 
+  ex_descricao = models.CharField(max_length=512) 
+  ex_intensidade = models.CharField(max_length=512) 
+  ex_foto = models.CharField(max_length=512) 
+  ex_video = models.CharField(max_length=512)
+  excercicios_categoria = models.ManyToManyField(Categoria)
+  equipamento = models.ForeignKey(Equipamento, on_delete=models.CASCADE) 
+
+class series_planostreino(models.Model):
+  sr_series = models.IntegerField()
+  sr_repeticoes = models.IntegerField()
+  sr_tempo = models.FloatField()
+  exercicios = models.ForeignKey(Exercicios, on_delete=models.CASCADE)
   planotreinos = models.ForeignKey(PlanoTreinos, on_delete=models.CASCADE) 
