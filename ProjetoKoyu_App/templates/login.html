@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/log-reg.css' %}">
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="index" id="index">
+    <!-- Overlay Section -->
+    <div class="overlay-index">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1 class="overlay-h1">Já tem conta?</h1>
+                <p>Entre na conta para poder obter acesso a todos os seus dados</p>
+                <button class="ghost" id="login">Entrar</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1 class="overlay-h1">Não tem conta?</h1>
+                <p>Faça o registro para conseguir registar todos os dados da sua corrida</p>
+                <button class="ghost" id="register">Registar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Form -->
+    <div class="form-index register-index">
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            <h1>Criar Conta</h1>
+            <input type="text" placeholder="Utilizador" name="username" required/>
+            <input type="email" placeholder="Email" name="email" required/>
+            <input type="password" placeholder="Palavra-Passe" name="password" required/>
+            <button type="submit">Registar</button>
+        </form>
+    </div>
+
+    <!-- Login Form -->
+    <div class="form-index login-index">
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <h1>Entrar</h1>
+            <input type="text" placeholder="Utilizador" name="username" required/>
+            <input type="password" placeholder="Palavra-Passe" name="password" required/>
+            <a onclick="mostrarpop('esqpassaut')">Esqueceu a Palavra-Passe?</a>
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+
+    <!-- Popup Section -->
+    <div class="popup" id="pop">
+        <div class="popEsqPassAut" id="esqpassaut">
+            <button class="ghost" onclick="fecharpop('esqpassaut')">
+                <img src="{% static 'img/popup-close.png' %}" alt="Fechar">
+            </button>
+            <form method="post">
+                {% csrf_token %}
+                <h1>Verificação</h1>
+                <input type="text" name="usernamePass" placeholder="Username" required/>
+                <input type="email" name="emailPass" placeholder="Email" required/>
+                <button type="submit">Verificar</button>
+            </form>
+        </div>
+        <div class="popEsqPass" id="altpass">
+            <button class="ghost" onclick="fecharpop('altpass')">
+                <img src="{% static 'img/popup-close.png' %}" alt="Fechar">
+            </button>
+            <form method="post" action="{% url 'forgot_password' %}">
+                {% csrf_token %}
+                <h1>Alteração</h1>
+                <input type="password" name="pass" placeholder="Palavra-Passe" required/>
+                <input type="password" name="passconf" placeholder="Confirmar Palavra-Passe" required/>
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
