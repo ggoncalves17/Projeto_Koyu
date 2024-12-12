@@ -70,6 +70,7 @@ body {
     display: flex;
     gap: 20px;
     margin-bottom: 30px;
+    flex-direction: column;
 }
 
 .card {
@@ -94,8 +95,10 @@ body {
 
 .history {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+    padding: 25px;
+    background-color: rgba(55, 154, 60, 1);
+    border-radius: 10px;
 }
 
 .history-card {
@@ -120,4 +123,25 @@ body {
     font-size: 14px;
     color: #555;
     margin-bottom: 5px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.historico_alteracoes {
+    left: 132px;
+    top: 44px;
+    position: middle;
+    overflow: visible;
+    width: 518px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 45px;
+    color: rgba(255, 255, 255, 1);
 }
