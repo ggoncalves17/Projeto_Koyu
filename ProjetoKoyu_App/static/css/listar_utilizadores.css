@@ -118,6 +118,8 @@ body {
 }
 
 .user-card {
+    height: 40vh;
+    width: 40vh;
     display: flex;
     align-items: center;
     padding: 20px;
@@ -150,4 +152,28 @@ body {
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+#add-button{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    background: white;
+    width: 7vh;
+    height: 7vh;
+    border-radius: 50px;
+    border-color: white;
+    color:#2D8A3E;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    font-size: large;
+}
+
+#search-bar{
+    background: #2D8A3E;
+    color: red !important;
+    border-radius: 40px;
+}
+
+#search-bar::placeholder{
+    color: white;
 }
