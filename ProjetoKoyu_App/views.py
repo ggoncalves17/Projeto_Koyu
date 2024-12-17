@@ -22,4 +22,3 @@ def login_view(request):
             messages.error(request, 'Credenciais inválidas. Tente novamente.')'''
     return render(request, 'projeto_koyu/login.html')
 
-
