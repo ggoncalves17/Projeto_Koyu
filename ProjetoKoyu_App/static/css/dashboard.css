@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: white;
 }
 
 .sidebar {
@@ -57,9 +57,22 @@ body {
 
 .dashboard-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    justify-content: flex-start;
+}
+.logo{
+    font-family: Segoe UI;
+    font-weight: bold;
+    font-size: 75px;
+    color: #008000;
+    margin-right: 10px;
+    letter-spacing: 2px
+}
+.title{
+    font-family: Segoe UI;
+    font-size: 40px;
+    color: rgba(120, 153, 122, 1);
+    font-weight: bold;
 }
 
 .dashboard-header h1 {
@@ -99,10 +112,11 @@ body {
     padding: 25px;
     background-color: rgba(55, 154, 60, 1);
     border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .history-card {
-    background-color: white;
+    background-color: rgba(215, 235, 216, 1);
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -125,23 +139,30 @@ body {
     margin-bottom: 5px;
 }
 
-.grid-container {
+.main-grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
 }
 
-.historico_alteracoes {
-    left: 132px;
-    top: 44px;
-    position: middle;
-    overflow: visible;
-    width: 518px;
-    white-space: nowrap;
-    text-align: left;
-    font-family: Segoe UI;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 45px;
-    color: rgba(255, 255, 255, 1);
+.hist-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    gap: 20px;
+    padding: 25px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+
+.historico_alteracoes h1{
+    color: #FFFFFF;
+    font-family: Arial, sans-serif;
+    font-size: 42px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    text-align: center;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
 }
