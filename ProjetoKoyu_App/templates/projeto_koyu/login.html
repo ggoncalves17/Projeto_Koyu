@@ -1,0 +1,79 @@
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Köyü - Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/log.css' %}">
+</head>
+
+<body class="bg-white">
+    <div class="position-fixed top-0 start-0 m-3">
+        <img src="{% static 'images/GP_LogótipoVerde.png' %}" alt="Köyü Logo" style="width: 150px;">
+    </div>
+
+    <div class="d-flex align-items-center justify-content-center" style="height: 100vh;">
+        <div class="text-center">
+            <h2 class="mb-4" id="entrar">Entrar</h2>
+
+            {% if messages %}
+            <div>
+                {% for message in messages %}
+                <!--https://micropyramid.com/blog/basics-of-django-message-framework-->
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <form>
+                <!--method="post" action="{% url 'login' %}" / {% csrf_token %}-->
+                <div class="form-group mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text bg-light text-muted">
+                            <svg width="24" height="24" viewBox="0 0 54 53" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M27.1001 29.625C29.8816 29.6252 32.6007 28.8006 34.9135 27.2554C37.2263 25.7102 39.0289 23.5139 40.0934 20.9442C41.1579 18.3745 41.4365 15.5468 40.8939 12.8187C40.3513 10.0907 39.0119 7.58479 37.0451 5.61799C35.0783 3.65118 32.5725 2.31179 29.8444 1.7692C27.1164 1.22661 24.2887 1.50518 21.719 2.5697C19.1492 3.63422 16.9529 5.43687 15.4077 7.74967C13.8625 10.0625 13.0379 12.7815 13.0381 15.563C13.0392 19.2922 14.521 22.8683 17.1579 25.5052C19.7948 28.1421 23.3709 29.624 27.1001 29.625ZM39.6001 32.75H34.2191C31.987 33.7794 29.5581 34.3124 27.1001 34.3124C24.6421 34.3124 22.2132 33.7794 19.9811 32.75H14.6001C11.2849 32.75 8.10547 34.067 5.76126 36.4112C3.41706 38.7554 2.1001 41.9348 2.1001 45.25L2.1001 46.813C2.10063 48.0561 2.59474 49.2481 3.47383 50.127C4.35291 51.0059 5.54502 51.4998 6.7881 51.5H47.4131C48.656 51.4995 49.8479 51.0055 50.7267 50.1267C51.6056 49.2478 52.0996 48.0559 52.1001 46.813V45.25C52.1001 41.9348 50.7831 38.7554 48.4389 36.4112C46.0947 34.067 42.9153 32.75 39.6001 32.75Z"
+                                    stroke="#CDCDCD" stroke-width="3" />
+                            </svg>
+                        </span>
+                        <input type="text" class="form-control bg-light" placeholder="Utilizador" required>
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <div class="input-group">
+                        <span class="input-group-text bg-light text-muted">
+                            <svg width="24" height="24" viewBox="0 0 37 48" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M31.167 16.584H29.084V12.417C29.0571 9.67204 27.9478 7.04866 25.9973 5.11712C24.0467 3.18559 21.4126 2.10205 18.6675 2.10205C15.9224 2.10205 13.2883 3.18559 11.3377 5.11712C9.38719 7.04866 8.27789 9.67204 8.251 12.417V16.584H6.167C5.06282 16.5872 4.00476 17.0272 3.22398 17.808C2.4432 18.5888 2.00317 19.6468 2 20.751V41.584C2.00343 42.688 2.44358 43.7458 3.22433 44.5264C4.00509 45.3069 5.06299 45.7468 6.167 45.75H31.167C32.2712 45.7468 33.3292 45.3068 34.11 44.526C34.8908 43.7452 35.3308 42.6872 35.334 41.583V20.75C35.3306 19.646 34.8904 18.5882 34.1097 17.8076C33.3289 17.0271 32.271 16.5872 31.167 16.584ZM18.667 35.334C17.8428 35.334 17.0372 35.0896 16.3519 34.6317C15.6667 34.1738 15.1326 33.5231 14.8172 32.7616C14.5018 32.0002 14.4193 31.1624 14.5801 30.354C14.7409 29.5457 15.1377 28.8032 15.7205 28.2205C16.3033 27.6377 17.0457 27.2408 17.8541 27.0801C18.6624 26.9193 19.5002 27.0018 20.2616 27.3172C21.0231 27.6326 21.6739 28.1667 22.1317 28.8519C22.5896 29.5372 22.834 30.3428 22.834 31.167C22.8308 32.2712 22.3908 33.3292 21.61 34.11C20.8292 34.8908 19.7712 35.3308 18.667 35.334ZM25.125 16.584H12.209V12.417C12.209 10.7041 12.8894 9.06134 14.1007 7.85014C15.3119 6.63894 16.9546 5.95849 18.6675 5.95849C20.3804 5.95849 22.0231 6.63894 23.2343 7.85014C24.4456 9.06134 25.126 10.7041 25.126 12.417L25.125 16.584Z"
+                                    stroke="#CDCDCD" stroke-width="3" />
+                            </svg>
+                        </span>
+                        <input type="password" class="form-control bg-light" placeholder="Palavra-Passe" required>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success">Entrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+{% endblock %}
