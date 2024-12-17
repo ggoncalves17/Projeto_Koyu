@@ -35,8 +35,8 @@
             </div>
             {% endif %}
 
-            <form>
-                <!--method="post" action="{% url 'login' %}" / {% csrf_token %}-->
+            <form method="POST">
+                {% csrf_token %}
                 <div class="form-group mb-3">
                     <div class="input-group">
                         <span class="input-group-text bg-light text-muted">
@@ -47,7 +47,7 @@
                                     stroke="#CDCDCD" stroke-width="3" />
                             </svg>
                         </span>
-                        <input type="text" class="form-control bg-light" placeholder="Utilizador" required>
+                        <input type="email" name="email" class="form-control bg-light" placeholder="Email" required>
                     </div>
                 </div>
                 <div class="form-group mb-4">
@@ -60,7 +60,7 @@
                                     stroke="#CDCDCD" stroke-width="3" />
                             </svg>
                         </span>
-                        <input type="password" class="form-control bg-light" placeholder="Palavra-Passe" required>
+                        <input type="password" name="password" class="form-control bg-light" placeholder="Palavra-Passe" required>
                     </div>
                 </div>
                 <div class="text-center">
