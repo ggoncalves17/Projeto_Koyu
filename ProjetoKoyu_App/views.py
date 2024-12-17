@@ -11,14 +11,10 @@ def homepage(request):
 
 # View de login
 def login_view(request):
-    '''if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('homepage')  # Redirecionar para a página inicial
-        else:
-            messages.error(request, 'Credenciais inválidas. Tente novamente.')'''
     return render(request, 'projeto_koyu/login.html')
 
+def dashboard(request):
+    return render(request, 'projeto_koyu/dashboard.html')
+
+def listar_utilizadores(request):
+    return render(request, 'projeto_koyu/listar_utilizadores.html')

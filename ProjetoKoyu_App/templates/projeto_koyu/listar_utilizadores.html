@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Utilizadores</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/listar_utilizadores.css' %}">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">Köyü</div>
+        <div class="user">
+            <img src="" alt="User Avatar">
+            <p>Bem-vindo, USER_NAME</p>
+        </div>
+        <div class="menu">
+            <a href="#">Exercícios</a>
+            <a href="#">Treino</a>
+            <a href="#">Utilizadores</a>
+            <a href="#">Perfil</a>
+        </div>
+        <div class="logout">
+            <a href="#">Logout</a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="main-header">
+            <div class="title">KoYu | Listar Treinos</div>
+            <div class="search">
+                <input id="search-bar" type="text" placeholder="Pesquisar...">
+            </div>
+        </div>
+        <div class="user-card">
+            <img src="" alt="User Avatar">
+            <div class="details">
+                <p>Nome utilizador</p>
+            </div>
+            <button>Ver detalhes</button>
+        </div>
+        <button id="add-button">+</button>
+    </div>
+</body>
+</html>
