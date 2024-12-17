@@ -1,17 +1,16 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from .models import Utilizador
-from .forms import UtilizadorForm
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout, authenticate, login as auth_login
-import time
+from django.http import HttpResponse
 
+# Página inicial
 def homepage(request):
     return render(request, 'projeto_koyu/index.html', context={'message': 'Bem-vindo!'})
 
-def login(request):
-
+# View de login
+def login_view(request):
     if request.method == "POST":
         email = request.POST.get("email")
         password = request.POST.get("password")
@@ -28,3 +27,9 @@ def login(request):
             messages.error(request, "Utilizador não encontrado.")
 
     return render(request, "projeto_koyu/login.html")
+
+def dashboard(request):
+    return render(request, 'projeto_koyu/dashboard.html')
+
+def listar_utilizadores(request):
+    return render(request, 'projeto_koyu/listar_utilizadores.html')
