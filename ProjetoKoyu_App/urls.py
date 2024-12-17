@@ -4,5 +4,6 @@ from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
+    path('login/', views.login, name='login'),
 ]
 
