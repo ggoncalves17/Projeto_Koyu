@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Treino - KÖYÜ</title>   
+    <link href="{% static 'css/style-addTreino.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="Container">
+        <div class="Top">
+            <div>
+                <!-- Substituir pela logo -->
+                <h1 class="logo">KÖYÜ</h1>
+                <span class="Separador"></span>
+                <span class="tituloLogo">Adicionar Treino</span>
+            </div>
+            <button class="buttonCancelar">Cancelar</button>
+        </div>
+        <div class="Middle">
+            <div class="middleLeft">
+                <div class="inputNome">
+                    <span>Nome</span>
+                    <input type="text" placeholder="Nome do Treino" name="NomeTreino">
+                </div>
+                <div class="opModalidade">
+                    <span>Modalidade</span>
+                    <div class="modalidadeInside">
+                        <img src="{% static 'images/left-arrow.png' %}" alt="">
+                        <div class="optionsCardsModalidade">
+                            <div class="cardModalidade">
+                                <span>MOVE</span>
+                            </div>
+                            <div class="cardModalidade">
+                                <span>PUMP</span>
+                            </div>
+                            <div class="cardModalidade">
+                                <span>JUMP</span>
+                            </div>
+                        </div>
+                        <img src="{% static 'images/right-arrow.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="inputDuracao">
+                    <span>Duração</span>
+                    <div class="duracaoInside">
+                        <input type="text" placeholder="000" maxlength="3" name="NomeTreino">
+                        <div class="divDuracaoText">Minutos</div>
+                    </div>
+                </div>
+            </div>
+            <div class="middleRight">
+                <div class="inputsTop">
+                    <div class="inputFotoCapa">
+                        <span>Foto de Capa</span>
+                        <div class="divEscolherFoto">
+                            <!-- Imagem da camera -->
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="inputDescricao">
+                        <span>Descrição</span>
+                        <textarea name="descricao" placeholder="Uma breve descrição do treino em si!"></textarea>
+                    </div>
+                </div>
+                <div class="opIntensidade">
+                    <span>Duração</span>
+                    <div class="intensidadeInside">
+                        <div class="opItemIntensidade">Baixa</div>
+                        <div class="opItemIntensidade Selected">Média</div>
+                        <div class="opItemIntensidade">Alta</div>
+                    </div>
+                </div>
+                <div class="opCategoria">
+                    <span>Duração</span>
+                    <div class="categoriaInside">
+                        <img src="{% static 'images/left-arrow.png' %}" alt="">
+                        <div class="cardModalidade"></div>
+                        <img src="{% static 'images/right-arrow.png' %}" alt="">    
+                    </div>                    
+                </div>                
+            </div>
+        </div>    
+        <div class="Bottom">
+            OLAAAAAA
+        </div>
+    </div>
+</body>
+</html>
