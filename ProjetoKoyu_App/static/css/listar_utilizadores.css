@@ -118,7 +118,7 @@ body {
 }
 
 .user-card {
-    height: 35vh;
+    height: 33vh;
     width: 35vh;
     display: flex;
     flex-direction: column;
@@ -158,11 +158,12 @@ body {
 .button-div{
     display: inline;
     height: fit-content;
-    width: 30vh;
+    width: 31vh;
     border-style: solid;
     border-radius: 20px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     border-width: 0px;
+    padding-right: 2px;
 }
 
 .user-card button {
@@ -193,10 +194,22 @@ body {
 
 #search-bar{
     background: #2D8A3E;
-    color: red !important;
+    color: white;
     border-radius: 40px;
+    width: 40vh;
+    padding-left: 50px;
 }
 
 #search-bar::placeholder{
     color: white;
+}
+
+#svg-lixo{
+    margin-bottom: -10px;
+    margin-right: 2px;
+}
+
+#svg-lupa{
+    position: absolute;
+    margin-left: 10px;
 }
