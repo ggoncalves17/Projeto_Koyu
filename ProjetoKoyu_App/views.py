@@ -34,3 +34,8 @@ def dashboard(request):
 
 def listar_utilizadores(request):
     return render(request, 'projeto_koyu/listar_utilizadores.html')
+
+
+# Para vizualizar os popups
+def popup_view(request):
+    return render(request, 'projeto_koyu/pop_up.html')
