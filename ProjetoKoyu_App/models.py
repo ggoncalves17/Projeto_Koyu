@@ -1,50 +1,37 @@
 from django.db import models
-
-#Relaçoes
-# ------- One-to-Many -------
-# class Author(models.Model): 
-#  name = models.CharField(max_length=100) 
-#  birth_date = models.DateField() 
-
-#class Book(models.Model): 
-#  title = models.CharField(max_length=200) 
-#  author = models.ForeignKey(Author, on_delete=models.CASCADE) 
-#  published_date = models.DateField()
-
-# ------- Many-to-Many ------- 
-#class Student(models.Model):
-#  name = models.CharField(max_length=100)
-
-#class Course(models.Model):
-#  title = models.CharField(max_length=200)
-#  students = models.ManyToManyField(Student)
-
-# ------- One-to-One ------- 
-#class User(models.Model):
-#  username = models.CharField(max_length=100)
-
-#class Profile(models.Model):
-#  user = models.OneToOneField(User, on_delete=models.CASCADE)
-#  bio = models.TextField()
-
-#https://www.geeksforgeeks.org/django-model-data-types-and-fields-list/
-
-
-# Create your models here.
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 class Equipamento(models.Model): 
   eq_nome = models.CharField(max_length=512) 
   eq_foto = models.CharField(max_length=512) 
 
-class Utilizador(models.Model):
-  ut_mail = models.CharField(max_length=512)
+class UtilizadorManager(BaseUserManager):
+  def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError("O email é obrigatório!")
+        user = self.model(ut_mail=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+  def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        return self.create_user(email, password, **extra_fields)
+
+class Utilizador(AbstractBaseUser):
+  ut_mail = models.EmailField(unique=True)
   ut_nome = models.CharField(max_length=512)
-  ut_pass = models.CharField(max_length=512)
+  password = models.CharField(max_length=512)
   ut_estado = models.IntegerField()
   ut_telefone = models.IntegerField()
   ut_foto = models.CharField(max_length=512)
   ut_tipo = models.CharField(max_length=512)
   ut_nif = models.IntegerField()
+
+  objects = UtilizadorManager()
+
+  USERNAME_FIELD='ut_mail'
 
 class Modalidade(models.Model): 
   ca_nome = models.CharField(max_length=512) 
