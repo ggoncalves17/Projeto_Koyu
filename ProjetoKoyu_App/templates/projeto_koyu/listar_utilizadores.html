@@ -26,8 +26,12 @@
     </div>
     <div class="main">
         <div class="main-header">
-            <div class="title">KoYu | Listar Treinos</div>
+            <div class="title" style="display: flex; align-items: center; "> <h2>KÖYÜ</h2> <p style="font-size:larger; color: #6b8e23;">| Listar Utilizadores</p></div>
             <div class="search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="#ffffff" id="svg-lupa">
+                    <circle cx="10" cy="10" r="6" stroke="#ffffff" stroke-width="2" fill="none"/>
+                    <line x1="14" y1="14" x2="20" y2="20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                </svg>                  
                 <input id="search-bar" type="text" placeholder="Pesquisar...">
             </div>
         </div>
@@ -36,7 +40,14 @@
             <div class="details">
                 <p>Nome utilizador</p>
             </div>
-            <button>Ver detalhes</button>
+            <div class="button-div">
+                <button>Ver detalhes</button>
+                <a href="http://127.0.0.1:8000/listar_utilizadores">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="#6b8e23" id="svg-lixo">
+                        <path d="M9 3h6a1 1 0 011 1v1h4a1 1 0 010 2h-1v13a2 2 0 01-2 2H7a2 2 0 01-2-2V7H4a1 1 0 010-2h4V4a1 1 0 011-1zm2 4v11a1 1 0 102 0V7a1 1 0 10-2 0zm-4 0v11a1 1 0 102 0V7a1 1 0 10-2 0zm8 0v11a1 1 0 102 0V7a1 1 0 10-2 0z"/>
+                    </svg>
+                </a>
+            </div>
         </div>
         <button id="add-button">+</button>
     </div>
