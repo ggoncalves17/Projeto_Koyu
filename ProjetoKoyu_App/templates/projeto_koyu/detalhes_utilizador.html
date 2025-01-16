@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Utilizador</title>
+    <title>Editar Utilizador</title>
     <link rel="stylesheet" href="{% static 'css/utilizador.css' %}">
 </head>
 <body>
@@ -44,9 +44,9 @@
             <header>
                 <div class="logo-titulo">
                     <img src="{% static 'images/GP_LogótipoVerde.png' %}" width="150" alt="Logo" class="logo">
-                    <h1>| Adicionar Utilizador</h1>
+                    <h1>| Editar Utilizador</h1>
                 </div>
-                <button class="btn-cancelar">Cancelar</button>
+                <button class="btn-cancelar">Voltar</button>
             </header>
             <div class="formulario">
                 <div class="foto-seletor">
@@ -80,7 +80,25 @@
                         </div>
                         <input type="file" id="upload-foto" hidden>
                     </div>
-                                      
+                    <div class="historico-treino-container">
+                        <div id="botao-historico" class="botao-historico">
+                            <div id="bola-historico" class="bola-historico">
+                                <svg width="30" height="30" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <rect width="64" height="64" fill="url(#pattern0_277_650)"/>
+                                    <defs>
+                                    <pattern id="pattern0_277_650" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                    <use xlink:href="#image0_277_650" transform="scale(0.015625)"/>
+                                    </pattern>
+                                    <image id="image0_277_650" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAC95JREFUeJztm3tw3NV1xz/n7q7WkhHYchMwwXjAk2SAQJxZS2tpV67cCcbQjJ2kkVtcHsVYj9TEoYW2TNNSNQkhtDEMHgLWyrJLXxQJJ9RTJ8G4VGM97JWq1jaEpqVJMMQylAFLjWw99rf39I/9rSzW+5RW+qf+/nV/955z7rln7+Occ+/CRVzERVzE/2PIvPTSgll1Vc31XivXg1yjyjI16jfIZVZRUYZFGAb5BaKvnvOXDZy46+DZ+VBtzgwQaK37FZ/Ev6DwedAQcFkB7A5wHKFXRDqObu3unSM1i2+AqrZQrVi5H2ED4C2S2J+Atpd4zbPdW7rfK5JMoIgGqNpVUy0ezw5Uq1Oa4sAgKn2KDojRn9lJ35vW6x0bbDo0Uv14dakt9y/RuLNExF6OSECQGhWpRnVJiqxRgcdkNL7jyO8fGSuG3nkbINAa8HlN6ddR0dIhz8NdLV0OQNVTVUuMv2SnKrdPlyfIgKJ/hcT2RRui7xasmSLBSDiE6L0g9cDCaUq/ZYWH+ht6nitYbgryNkCwLXQbKgcSTHrb0cbeH1ZFam8RdC+wdJrIH6D6aLSpp2e2yk31vTN4KaXeLaj8KVAx1aD6tw7jTYNNg+dmKjtvA1S1hutF6Ej0yyYRXQ7yGGASyvCfKvLV/sbul2aqTC5U766uiFvTIkgz4HOrT2DNl6LNh9+YicwZGQB4FbjRLSvwjBmNP1isdZlTl12hVWLkBWC5WzVssesGGvsGCpVlZqhDcvDjInp7tLFn23wNHqC/ufdfdXIyAHLQrVpkMD+qbl1zY1bGNJipARIQItaKDbaFbqtrqSvWkZcX+u/rfz861H0rsMetqrBiX17VHvpkIXJmZwBluwgdqBwYXxr781nJmglasFcvWtoIJE+Dy01cDqzcW7coXxH5G0D5L8BmbBbJ2DaX6NzUGS8d8t4Fsh9AYMWCmLMnF18SBTlCVbvCn0b4RGq9ER1dMOR7OekbANR31HveHhnaiJq1iF5eSD9TUHnXoq8sX7R0f+emzng20pV76xYtiDnHFa4GEPSOo429f5erizmJBSr3hK81Dt8HbiqSyGMq5ov9DYd/nrXfXWvWGGP/BTAK75XFvNd2besazcYzuz0gDcJPhxcbh0MUb/AAK1H7cqD1s1kDqoHmw4dBHgcQ+MiYL/aVXIKLvnM7Hn0Q5BoARA9rXLYvr1j6Wq4pnIr6jnrPm8OnbjSYnUCtwAqvmXgAeDgb34TP84g/5mwFFiHmgeDO4Hej26P/m4m+6DNAkd9wix9MeH0b+5t7jhc6eEhsbgONfcd8DhuBMwnhWp+L79g9XcMgT7j0S8TvyzoLin92C9e4pWhCGahrqfOOfSy2Tq0szMJ5XoTRs6WnfAe7Wrqcnt/tOROMhI8CtwLX5sPvqP9Jr4zfDyxWaKKFR2lJf4LNhfNSAiDC1OYz9jHnG6g8JPluuSqML419C/haUpbqedm5MNh0aCQYCb8ANCAsq7yidu0A3f+cjrboSyAtVLRwltn5FYrsS5aNRzdkopsX97V0yPPw+JWxbqtyST70Sb9iNn3G9dwrXin9AKjAcksmuqL7AcFIWAFE6Dza0LNptvICrYEyr5S+CNwM4KhcOdjUfTpPXTqBLwF2bEHZpekSrfOzBGaAYFvtTcFIuNMrpWdwBw/gFR0KtoUHqlrDOU8EkFfdgvGPj16fjmJeloCbS9jLtLRWCs6C3B1t7N4HsLo1vF1V/5JMm56ySoSOYGv4ew5jd2bKCInY11QTk9yI+RRwQb5gXmaACOvJPHiAhSp2PbiDF57k/OCPqcjXELkT9A8Evk8yKBO+6JXSF+s76j1p+7X29WmfF8QwkGEGBFoDPp8s+Gw85vv3gW1d72QdXR4wJv6otcaIpPcD1DLqVf12sK32JlX9jlsdQ7gvurWnLRAJeF19Dg1s6/pOZaRmpVGzH2EZcPPbw6cfBB5LlTuJd8SLewAppen6TmsAryn9uioPGZ/zBhksVwiObD3y38A9ueiCreF9iJvrE+6LNvREaABv24f1GWjsO1a5J1xnHE4ACxX+KNQeerr33t5fTpfniU1MUpKYSCrpl1P6JaBTubaPVz9endZyxUaoPVSO8Dn381h0a09bsk1gRVKfZN3Alp6fiZKcLYtjjqxPlSlWYsmy0fQGSDsDBM4lPRdb7l8C/CLvkcwQkzHPZ4yxCS9SeQEhrfO0ui3coapnjbGPWJXvofpnAEa0GuicTuv4S0u8JFIUqqSNRzKdAu8nCxp35sUAxqMfnVquRk5Ob1MrFteZVKUehLgaZ9xfen/peOIAsJiPpsr0Eb86aUUR3k7bb7pKqzpFLGJnls0pECau5xMXaq+Y3qbwD8D09T1q4If+X06WT9WIXhDyWtHkUkbhZGo7ZJgBxshret50AeBgOrpiwikxPzZO8nSTmult/U3dLwKXpvKsjtT+ztQ6sfp6arso1yZ9XRV9M12/aWfAOX/ZAIkr6guUmSsMbDn8NnAMQGFjZaRmZTb6QGugTNE/dD/jxvr+6QIikTVuyTIRu8BAkMEArs98HCBxSzs/DylU+IukXkbN/so94bTxvxsfPAtcByDC80e/3PVmCo0PdC2AIIP99/W/f6GkbK6w0IsSQHXJ6vbamqPM3SOFJPobep4LRkK/CbIRYZlxOBGMhHYgZp9j/SeN45R6fPH17i9/navnO8axv5cqq0TKaixaDmBFMy7hjK6wiCTvAdG43jubgRUCR8c3i5BMXiwEeRjV414ZHzY+57QmbqOvc9vfNdas6/ty3/+kyrGqm89/acYL24wGcJ+l/AQAYVOoPVSeiTYFkwCq5BX7p2KwafDcssuW3gL6x8BwBrI48BwS+/SRpsOvpjZWPVW1BOEOAIWf9p/qzTh7cwRD2u4WFsYcszWfAaAkc/fB8NPhxXnxpKBzU2c82tj7KOOx5aLSAFNO0Wlgm8fYFdHGns0ZH174/U1AGYBRdmbKB0IOA5R4zbOQyO2J6J9U766uyEYPgEx5YxUxL/9YvXvNZzJFa1nRgomXea5W0c0kEzciu6ONPU/3be1Le6ZD4oZIVLe7nyMer+7N1k3WfED3lu73VkfCjyl8A6iIW9MCbM/GM+Hz7iiJObe7/nuttfbf3ho+TTASzsaWHtN+N1Fei6l/Ry4Wf8z5NpBw3oRnUgOkVOTMB8hofIfAWwl50lwZqanMRn/snq5hxNyMe6YXAwp9YuPrB5sOjWSjC7aGw0CD+3lyzF/2zVyy8zrfq9rCt4vy90nBOjkZyHSuJlHfUe85OXx6gwh18qE3RPnDqr6Dmpf6m7oP5KKt3l1dYa3nKMmIUfTXow29P8jFl/8jqdbQ3yByh8t2MDrUfWu2zWU+cUPHDSWXDC9+CagDQOX5aFP3b+XDm3dKzGG8CTiR+NJ1wSvDbTPa3IoNRcpHKiIkBw9vTJR4mvNlL8jFDe5a83GM7QeSLzCeKx3y3jX9XcB84oaOG0rKRyoiqnq3W3UGK+Foc3davz8dCvbxKyM1lQbzI6be68n+CZ/n7uQ94HzBXfP7OP/Ln1Vrb+5v7jtSiJyCs8IDjX0DiKwFXCdENyyIOcerI7W/WqismSLYGg67G16dW3VmJoOHWdwMrWoPfdLE5cC0fJ0FeXzC53lkrmbDyr11i9xzvpHzur+Blc8XMu2nY1ZhrvsuZ4/CF6ZVD4M84aj/yVzndr6oeqpqCX5/k+vhnc9QqTw/UeJpno3BixLnr46EftsiTwh8ZFr1GeAFRfbF9dwrg02DsUz86RBoDfhKpKzGqm5GuBM+lNc/qSrb8vEPcqFoiY6679ZdMuaLfQUxD6R55v4B8Ip7V/djEXldmfjAF/NNAlixPms8V1nR5Yk0ltaC/BqQGoGOIDwz5i/7ZrH+UVL0TE+oPVQej8tXFZqAq4ohU+GnRtnp8ereXL59oZi7VFcLpvKK2rXGoxuw3OK+L8y3PyvIYCKToy/1n+rtnSuvc37+NAXc9NfrFvrHR683Yj6lsEKUS5L3dSJiQU8pnET5ucYm/yNXrHERF3ERF3ERRcD/ARJbkWs2hCwGAAAAAElFTkSuQmCC"/>
+                                    </defs>
+                                    </svg>
+                                    
+                            </div>
+                            <span id="texto-historico" class="texto-historico">Histórico de Treino</span>
+                        </div>
+                    </div>
+                    
+                    
                 </div>
                 
                 
@@ -104,11 +122,15 @@
                         <input type="text" id="nif" name="nif" placeholder="NIF do Utilizador" pattern="\d{9}">
                     </div>                     
                 </form>
-                <button type="submit" class="btn-registar">Registar Utilizador</button>
+                <div class="botoes-acao">
+                    <button class="btn-desativar">Desativar</button>
+                    <button class="btn-editar">Editar</button>
+                </div>
             </div>
         </main>
     </div>
     <script src="{% static 'js/adicionar_utilizador.js' %}"></script>
+    <script src="{% static 'js/detalhes_utilizador.js' %}"></script>
 </body>
 </html>
 
