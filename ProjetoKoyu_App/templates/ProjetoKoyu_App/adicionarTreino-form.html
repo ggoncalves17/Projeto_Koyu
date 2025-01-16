@@ -16,75 +16,175 @@
                 <span class="Separador"></span>
                 <span class="tituloLogo">Adicionar Treino</span>
             </div>
-            <button class="buttonCancelar">Cancelar</button>
+            <button class="buttonCancelar" id="buttonCancelar">Cancelar</button>
         </div>
-        <div class="Middle">
-            <div class="middleLeft">
-                <div class="inputNome">
-                    <span>Nome</span>
-                    <input type="text" placeholder="Nome do Treino" name="NomeTreino">
+        <div class="pageSelector">
+            <div class="separadorSelector Selected" id="separadorSelector1"></div>
+            <div class="separadorSelector" id="separadorSelector2"></div>
+        </div>
+        <div class="MiddleContainer">
+            <div class="Middle1" id="Middle1">
+                <div class="middleLeft1">
+                    <div class="inputNome">
+                        <span>Nome</span>
+                        <input type="text" placeholder="Nome do Treino" name="NomeTreino">
+                    </div>
+                    <div class="opModalidade">
+                        <span>Modalidade</span>
+                        <div class="modalidadeInside">
+                            <img src="{% static 'images/left-arrow.png' %}" alt="">
+                            <div class="optionsCardsModalidade">
+                                <div class="cardModalidade">
+                                    <span>MOVE</span>
+                                </div>
+                                <div class="cardModalidade">
+                                    <span>PUMP</span>
+                                </div>
+                                <div class="cardModalidade" id="addModalidade">
+                                    <img src="{% static 'images/add-Modalidade.png' %}">
+                                </div>
+                            </div>
+                            <img src="{% static 'images/right-arrow.png' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="inputDuracao">
+                        <span>Duração</span>
+                        <div class="duracaoInside">
+                            <input type="text" placeholder="000" maxlength="3" name="NomeTreino">
+                            <div class="divDuracaoText">Minutos</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="opModalidade">
-                    <span>Modalidade</span>
-                    <div class="modalidadeInside">
-                        <img src="{% static 'images/left-arrow.png' %}" alt="">
-                        <div class="optionsCardsModalidade">
-                            <div class="cardModalidade">
-                                <span>MOVE</span>
-                            </div>
-                            <div class="cardModalidade">
-                                <span>PUMP</span>
-                            </div>
-                            <div class="cardModalidade">
-                                <span>JUMP</span>
+                <div class="middleRight1">
+                    <div class="inputsTop">
+                        <div class="inputFotoCapa">
+                            <span>Foto de Capa</span>
+                            <div class="divEscolherFoto">
+                                <!-- Imagem da camera -->
+                                <img src="{% static 'images/camera-botao.png' %}" alt="">
                             </div>
                         </div>
-                        <img src="{% static 'images/right-arrow.png' %}" alt="">
+                        <div class="inputDescricao">
+                            <span>Descrição</span>
+                            <textarea name="descricao" placeholder="Uma breve descrição do treino em si!"></textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="inputDuracao">
-                    <span>Duração</span>
-                    <div class="duracaoInside">
-                        <input type="text" placeholder="000" maxlength="3" name="NomeTreino">
-                        <div class="divDuracaoText">Minutos</div>
+                    <div class="opIntensidade">
+                        <span>Intensidade</span>
+                        <div class="intensidadeInside">
+                            <div class="opItemIntensidade">Baixa</div>
+                            <div class="opItemIntensidade Selected">Média</div>
+                            <div class="opItemIntensidade">Alta</div>
+                        </div>
                     </div>
-                </div>
+                    <div class="opCategoria">
+                        <span>Categoria</span>
+                        <div class="categoriaInside">
+                            <img src="{% static 'images/left-arrow.png' %}" alt="">
+                            <div class="cardCategoria"></div>
+                            <div class="cardCategoria"></div>
+                            <div class="cardCategoria"></div>
+                            <div class="cardCategoria" id="addCategoria">
+                                <img src="{% static 'images/add-Categoria.png' %}">
+                            </div>
+                            <img src="{% static 'images/right-arrow.png' %}" alt="">    
+                        </div>                    
+                    </div>                
+                </div>                
             </div>
-            <div class="middleRight">
-                <div class="inputsTop">
-                    <div class="inputFotoCapa">
-                        <span>Foto de Capa</span>
-                        <div class="divEscolherFoto">
-                            <!-- Imagem da camera -->
-                            <img src="" alt="">
+            <div class="Middle2" id="Middle2" style="display: none;">
+                <div class="middleLeft2">
+                    <span>Associação dos Exercícios</span>
+                    <div class="selectExercicio">
+                        <div class="searchExercicioContainer">
+                            <img src="{% static 'images/search.png' %}"></img>
+                            <input class="searchExercicio" type="text" placeholder="Pesquisar..." name="exercicioSearch">
+                        </div>
+                        <div class="containerItems">
+                            <div class="itemSelfselect">
+                                <div class="fotoItemselect"></div>
+                                <span>Nome</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="inputDescricao">
-                        <span>Descrição</span>
-                        <textarea name="descricao" placeholder="Uma breve descrição do treino em si!"></textarea>
-                    </div>
                 </div>
-                <div class="opIntensidade">
-                    <span>Duração</span>
-                    <div class="intensidadeInside">
-                        <div class="opItemIntensidade">Baixa</div>
-                        <div class="opItemIntensidade Selected">Média</div>
-                        <div class="opItemIntensidade">Alta</div>
-                    </div>
-                </div>
-                <div class="opCategoria">
-                    <span>Duração</span>
-                    <div class="categoriaInside">
-                        <img src="{% static 'images/left-arrow.png' %}" alt="">
-                        <div class="cardModalidade"></div>
-                        <img src="{% static 'images/right-arrow.png' %}" alt="">    
-                    </div>                    
+                <div class="middleRight2">
+                    <span>Exercícios Selecionados</span>
+                    <div class="selectedExercicio">
+                        <div class="containerItems">
+                            <div class="itemSelfselected">
+                                <div class="buttonItem">
+                                    <img src="{% static 'images/cancel.png' %}"></img>
+                                </div>
+                                <div class="fotoItemselected"></div>
+                                <span>Nome</span>
+                            </div>
+                        </div>
+                    </div>                                  
                 </div>                
             </div>
         </div>    
         <div class="Bottom">
-            OLAAAAAA
+            <button class="buttonCancelar Voltar" id="buttonVoltar" style="display: none;" >Voltar</button>  
+            <button class="buttonFinal" id="buttonFinal">Seguinte</button>            
         </div>
     </div>
+    <div class="shadowBox" style="display: none;">
+        <div class="addExercicioPop" style="display: none;">            
+            <div class="popUpDiv">
+                <span>Séries</span>
+                <div class="popUpInput">
+                    <input type="text" placeholder="00" maxlength="2" name="numSerie">
+                    <div class="popUpInputText">X</div>
+                </div>
+            </div>            
+            <div class="popUpDiv">
+                <span>Repetições</span>
+                <div class="popUpInput">
+                    <input type="text" placeholder="00" maxlength="2" name="numReps">
+                    <div class="popUpInputText">X</div>
+                </div>
+            </div>
+            <div class="divButtonPop">
+                <button class="buttonCancelar popUpButton" id="closePopUp" >Cancelar</button>  
+                <button class="buttonFinal popUpButton" style="margin-right: 0px;" id="buttonFinal">Seguinte</button>   
+            </div>
+        </div>
+        <div class="addModalidadePop" style="display: none;"> 
+            <div class="popUpFoto">
+                <div class="selectFotoPop">
+                    <img src="{% static 'images/camera-botao.png' %}">
+                </div>
+            </div>         
+            <div style="height: 100%; justify-content: space-evenly; display: flex; flex-direction: column;"> 
+                <div class="inputNome">
+                    <span>Nome</span>
+                    <input type="text" placeholder="Nome da modalidade" name="NomeModalidade">
+                </div>
+                <div class="divButtonPop">
+                    <button class="buttonCancelar popUpButton" id="buttonRemoverPop" style="font-size: 12px;">Remover</button>  
+                    <button class="buttonFinal popUpButton" style="margin-right: 0px; font-size: 12px;" id="buttonConfirmarPop">Confirmar</button>   
+                </div>
+            </div> 
+        </div>
+        <div class="addCategoriaPop" style="display: none;"> 
+            <div class="popUpFoto">
+                <div class="selectFotoPop">
+                    <img src="{% static 'images/camera-botao.png' %}">
+                </div>
+            </div>         
+            <div style="height: 100%; justify-content: space-evenly; display: flex; flex-direction: column;"> 
+                <div class="inputNome">
+                    <span>Nome</span>
+                    <input type="text" placeholder="Nome da categoria" name="NomeCategoria">
+                </div>
+                <div class="divButtonPop">
+                    <button class="buttonCancelar popUpButton" id="buttonRemoverPop" style="font-size: 12px;">Remover</button>  
+                    <button class="buttonFinal popUpButton" style="margin-right: 0px; font-size: 12px;" id="buttonConfirmarPop">Confirmar</button>   
+                </div>
+            </div> 
+        </div>
+    </div>
+<script src="{% static 'js/functions.js' %}"></script>
 </body>
 </html>

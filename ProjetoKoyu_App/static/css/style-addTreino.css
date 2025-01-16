@@ -30,8 +30,7 @@ input{
     flex-direction: column;
     margin: 0;
     justify-content: space-between;
-    padding: 40px;
-    padding-top: 0px;
+    padding: 20px;  
     height: calc(100vh - 40px);
 }
 
@@ -61,6 +60,7 @@ input{
 
 .logo{
     font-size: 40px;
+    margin: 0px;
 }
 
 .tituloLogo{
@@ -71,7 +71,7 @@ input{
 
 .buttonCancelar{
     background-color: white;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
     border-radius: 25px;
     height: fit-content;
     width: fit-content;
@@ -80,27 +80,52 @@ input{
     font-size: 17px;
     padding: 10px 20px;
     font-weight: bold;
+    cursor: pointer;
 }
 
-.Middle{
+.MiddleContainer{
     display: flex;
     justify-content: center;
     height: max-content;
+    flex-direction: column;
 }
 
-.middleLeft{
+/* ------------------- MIDDLE 1 -------------- */
+
+.Middle1, .Middle2{
+    display: flex;
+    justify-content: center;
+}
+
+.middleLeft1{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 30px;
+}
+
+.middleRight1{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .inputNome{
     display: flex;
     flex-direction: column;
     margin: 10px;
+    width: 100%;
 }
 .inputNome > span{
     margin-bottom: 5px;
     color: #78997A;
     font-weight: 550;
+}
+.inputNome > input {
+    margin: 0px 5px;
+    width: calc(100% - 50px);
 }
 
 .opModalidade{
@@ -141,6 +166,9 @@ input{
     transform: rotate(-45deg);
     font-size: 45px;
 }
+.cardModalidade > img{
+    height: 30px;
+}
 
 .optionsCardsModalidade{
     display: flex;
@@ -177,4 +205,429 @@ input{
     border-radius: 25px;
     padding: 5px 12px;
     margin-left: -80px;
+}
+
+.inputsTop{
+    display: flex;
+    flex-direction: row;
+}
+
+.inputFotoCapa{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+.inputFotoCapa > span{
+    margin-bottom: 5px;
+    color: #78997A;
+    font-weight: 550;
+}
+
+.divEscolherFoto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 145px;
+    height: 125px;
+    border-radius: 15px;
+    border: 3px #396C3B solid;
+    cursor: pointer;
+}
+.divEscolherFoto > img {
+    height: 40px;
+}
+
+.inputDescricao{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+.inputDescricao > span{
+    margin-bottom: 5px;
+    color: #78997A;
+    font-weight: 550;
+}
+.inputDescricao > textarea{
+    width: 130px;
+    height: 110px;
+    border-radius: 15px;
+    border: 0px;
+    background-color: #D7EBD8;
+    padding: 10px;
+    resize: none;
+    outline: none;
+    color: #78997A;
+}
+
+.opIntensidade{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+.opIntensidade > span{
+    margin-bottom: 5px;
+    color: #78997A;
+    font-weight: 550;
+}
+
+.intensidadeInside{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.opItemIntensidade{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+    background-color: #D7EBD8;
+    border-radius: 10px;
+    margin: 5px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+}
+
+.opCategoria{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+.opCategoria > span{
+    margin-bottom: 5px;
+    color: #78997A;
+    font-weight: 550;
+}
+
+.categoriaInside{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+.categoriaInside > img{
+    height: 20px;
+    cursor: pointer;
+}
+
+.cardCategoria{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    background-color: #D7EBD8;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 5px;
+}
+.cardCategoria > img{
+    height: 30px;
+}
+
+
+.pageSelector{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.separadorSelector{
+    background-color: #D7EBD8;
+    width: 125px;
+    height: 7px;
+    margin: 5px;
+    border-radius: 20px;
+}
+
+.Selected{
+    background-color: #379A3C;  
+}
+
+.Bottom{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonFinal{
+    width: 200px;
+    background-color: #379A3C;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.50);
+    border-radius: 25px;
+    height: fit-content;
+    color: white;
+    border: 0px;
+    font-size: 17px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ------------------- MIDDLE 2 -------------- */
+
+.middleLeft2 > span{
+    color:#78997A;
+    font-weight: bolder;
+}
+.middleRight2 > span{
+    color:#78997A;
+    font-weight: bolder;
+}
+
+.middleLeft2{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    margin-right: 30px;
+}
+
+.middleRight2{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+}
+
+.selectExercicio{
+    display: flex;
+    align-items: center;
+    height: 55vh;
+    width: 40vw;
+    background-color: #D7EBD8;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+    border-radius: 12.5px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    flex-direction: column;
+}
+
+.selectedExercicio{
+    display: flex;
+    justify-content: center;
+    height: 55vh;
+    width: 40vw;
+    background-color: white;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+    border-radius: 12.5px;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+.searchExercicioContainer{
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: calc(100% - 20px);
+    background-color: #379A3C;
+    border-radius: 25px;
+    margin: 10px;
+    padding: 0px;
+    color: white;
+    padding: 0px 15px;
+}
+.searchExercicioContainer > img{
+    height: 20px;
+}
+
+.searchExercicio{
+    background-color: unset;
+    color: #D7EBD8;
+    border: 0px;  
+    width: calc(100% - 40px);
+    padding: 10px 10px;
+    outline: none !important;
+}
+
+.containerItems{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px; 
+    justify-items: center;
+    overflow: scroll;
+    padding: 10px;
+}
+
+.itemSelfselect{
+    height: 120px;
+    width: 100px;
+    background-color: white;
+    border: 2px white solid;
+    border-top: 0px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.fotoItemselect{
+    width: 100%;
+    height: 75%;
+    border: 2px #396C3B solid;
+    border-radius: 10px;
+}
+
+.itemSelfselected{
+    position: relative;
+    height: 120px;
+    width: 100px;
+    background-color: #379A3C;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+.fotoItemselected{
+    width: 100%;
+    height: 75%;
+    background-color: #396C3B;
+    border-radius: 10px;
+}
+
+.buttonItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 0;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 0px 10px 0px 30px;
+    box-shadow: -4px 4px 10px 2px rgba(0,0,0,0.3);
+}
+.buttonItem > img{
+    height: 10px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+.Voltar {
+    margin-right: 20px;
+    width: 200px;
+}
+
+/* ------------------- Pop-Ups -------------- */
+
+.shadowBox{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+}
+
+.addExercicioPop{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: fit-content;
+    height: 40vh;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.popUpDiv{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px;
+}
+.popUpDiv > span{
+    margin-bottom: 5px;
+    color: #78997A;
+    font-weight: 550;
+}
+
+.popUpInput{
+    display: flex;
+}
+.popUpInput > input{
+    width: 50px;
+}
+
+.popUpInputText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #379A3C;
+    color: white;
+    border-radius: 25px;
+    padding: 5px 12px;
+    margin-left: -30px;
+}
+
+.divButtonPop{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popUpButton{
+    margin-right: 10px;
+    width: 150px;
+    font-weight: normal;
+}
+
+.addModalidadePop{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    min-width: fit-content;
+    height: 40vh;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.popUpFoto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 150px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: #379A3C 3px solid;
+    margin-right: 20px;
+    border-radius: 15px;
+}
+
+.selectFotoPop{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: #78997A;
+    border-radius: 50px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+.selectFotoPop > img{
+    height: 25px;
+}
+
+.addCategoriaPop{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    min-width: fit-content;
+    height: 40vh;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
 }
