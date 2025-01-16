@@ -59,12 +59,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    margin-bottom: 20px;
 }
 .logo{
     font-family: Segoe UI;
     font-weight: bold;
     font-size: 75px;
-    color: #008000;
+    color: rgba(55, 154, 60, 1);
     margin-right: 10px;
     letter-spacing: 2px
 }
@@ -82,29 +83,36 @@ body {
 .cards {
     display: flex;
     gap: 20px;
-    margin-bottom: 30px;
     flex-direction: column;
 }
 
 .card {
-    flex: 1;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     background-color: #e0f7ec;
-    padding: 20px;
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.card h2 {
-    font-size: 40px;
-    margin: 0;
-    color: #006f3c;
+    max-width: 400px;   
+    align-self: end;
+    gap: 10px;
 }
 
 .card p {
-    margin: 10px 0 0;
-    color: #333;
+    font-size: 30px;
+    color: rgba(57, 108, 59, 1);
+    font-family: Segoe UI;
+    align-self: center;
+    font-weight: bold;
 }
+
+.dados {
+    font-size: 40px;
+    color: white;
+    font-family: Segoe UI;
+}
+
 
 .history {
     display: grid;
@@ -140,7 +148,7 @@ body {
 }
 
 .main-grid-container {
-    display: grid;
+    display: flex;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
 }
@@ -153,14 +161,14 @@ body {
     padding: 25px;
     background-color: white;
     border-radius: 10px;
+    margin-top: -70px;
 }
 
 
-.historico_alteracoes h1{
+.historico_alteracoes{
     color: #FFFFFF;
-    font-family: Arial, sans-serif;
-    font-size: 42px;
-    font-weight: bold;
+    font-family: Segoe UI;
+    font-size: 36px;
     letter-spacing: 1px;
     line-height: 1.5;
     text-align: center;
