@@ -35,6 +35,7 @@ def login_view(request):
         print(utilizador)
 
         if utilizador is not None and utilizador.ut_tipo == "Gestor":
+
             login(request, utilizador)
             messages.success(request, "Credenciais Corretas.")
             return redirect("/")
