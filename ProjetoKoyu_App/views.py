@@ -37,7 +37,7 @@ def login_view(request):
             if utilizador.ut_tipo == "Gestor":
                 login(request, utilizador)
                 return redirect("/dashboard")
-            # Caso o utilizador seja utilizador comumfica pois apenas foi desenvolvido a parte do gestor
+            # Caso o utilizador seja utilizador comum, fica na mesma página pois apenas foi desenvolvido a parte do gestor
             else:
                 messages.error(request, "Credenciais Corretas (Páginas Utilizador em Desenvolvimento)")
         else:
