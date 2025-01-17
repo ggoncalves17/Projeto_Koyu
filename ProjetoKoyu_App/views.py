@@ -32,32 +32,32 @@ def login_view(request):
 
         utilizador = authenticate(request, ut_mail=email, password=password)
 
-        print(utilizador)
-
-        if utilizador is not None and utilizador.ut_tipo == "Gestor":
-
-            login(request, utilizador)
-            messages.success(request, "Credenciais Corretas.")
-            return redirect("/")
+        if utilizador is not None and utilizador.ut_estado == 1:
+            # Caso o utilizador seja Gestor vai para dashboard
+            if utilizador.ut_tipo == "Gestor":
+                login(request, utilizador)
+                return redirect("/dashboard")
+            # Caso o utilizador seja utilizador comum, fica na mesma página pois apenas foi desenvolvido a parte do gestor
+            else:
+                messages.error(request, "Credenciais Corretas (Páginas Utilizador em Desenvolvimento)")
         else:
             messages.error(request, "Credenciais Incorretas.")
 
     return render(request, "projeto_koyu/login.html")
 
+@login_required
 def dashboard(request):
     return render(request, 'projeto_koyu/dashboard.html')
 
-#Funcoes relativas a pagina listar utilizadores - Inicio
+#Funcoes relativas a pagina listar utilizadores
+@login_required
 def listar_utilizadores(request):
     utilizadores = Utilizador.objects.all()
     return render(request, 'projeto_koyu/listar_utilizadores.html', {'utilizadores':utilizadores})
-
+  
+@login_required
 def apagar_utilizador(request, ut_id):
     utilizador = get_object_or_404(Utilizador, id=ut_id)
     utilizador.ut_estado = 0
     utilizador.save()
     return redirect('listar_utilizadores')
-
-
-#Funcoes relativas a pagina listar utilizadores - Final
-
