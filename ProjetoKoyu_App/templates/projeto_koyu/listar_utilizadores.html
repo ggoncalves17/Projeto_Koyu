@@ -60,7 +60,7 @@
             {% for utilizador in utilizadores %}
                 {% if utilizador.ut_estado != 0 %}
                     <div class="user-card" ut_nome="{{ utilizador.ut_nome }}">
-                        <img src="{% static 'images/listar_utilizadores/ProfilePhotos/profile_picture.jpeg' %}" alt="Profile Picture">
+                        <img src="{% static 'images/listar_utilizadores/ProfilePhotos/' %}{{utilizador.ut_foto}}" alt="Profile Picture">
                         <div class="details">
                             <p>{{utilizador.ut_nome}}</p>
                         </div>
