@@ -32,19 +32,23 @@ def login_view(request):
 
         utilizador = authenticate(request, ut_mail=email, password=password)
 
-        print(utilizador)
-
-        if utilizador is not None and utilizador.ut_tipo == "Gestor":
-            login(request, utilizador)
-            messages.success(request, "Credenciais Corretas.")
-            return redirect("/")
+        if utilizador is not None and utilizador.ut_estado == 1:
+            # Caso o utilizador seja Gestor vai para dashboard
+            if utilizador.ut_tipo == "Gestor":
+                login(request, utilizador)
+                return redirect("/dashboard")
+            # Caso o utilizador seja utilizador comumfica pois apenas foi desenvolvido a parte do gestor
+            else:
+                messages.error(request, "Credenciais Corretas (Páginas Utilizador em Desenvolvimento)")
         else:
             messages.error(request, "Credenciais Incorretas.")
 
     return render(request, "projeto_koyu/login.html")
 
+@login_required
 def dashboard(request):
     return render(request, 'projeto_koyu/dashboard.html')
 
+@login_required
 def listar_utilizadores(request):
     return render(request, 'projeto_koyu/listar_utilizadores.html')
