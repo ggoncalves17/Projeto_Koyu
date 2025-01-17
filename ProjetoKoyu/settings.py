@@ -27,9 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = "/login/"
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -77,10 +77,18 @@ WSGI_APPLICATION = 'ProjetoKoyu.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db2022129956',
+        'USER': 'projetogp',
+        'PASSWORD': 'GP_user_24/25',
+        'HOST': 'aid.estgoh.ipc.pt', 
+        'PORT': '5432',
+        'OPTIONS': {
+            'options': '-c search_path=projetogp'        
+        },
     }
 }
+
 
 
 # Password validation
@@ -118,8 +126,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATICFILES_DIRS = [BASE_DIR / "ProjetoKoyu_App" / "static"]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "ProjetoKoyu_App.Utilizador"
