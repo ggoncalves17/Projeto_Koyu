@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from .models import Utilizador, UtilizadorManager
 from .forms import UtilizadorForm
@@ -47,5 +47,17 @@ def login_view(request):
 def dashboard(request):
     return render(request, 'projeto_koyu/dashboard.html')
 
+#Funcoes relativas a pagina listar utilizadores - Inicio
 def listar_utilizadores(request):
-    return render(request, 'projeto_koyu/listar_utilizadores.html')
+    utilizadores = Utilizador.objects.all()
+    return render(request, 'projeto_koyu/listar_utilizadores.html', {'utilizadores':utilizadores})
+
+def apagar_utilizador(request, ut_id):
+    utilizador = get_object_or_404(Utilizador, id=ut_id)
+    utilizador.ut_estado = 0
+    utilizador.save()
+    return redirect('listar_utilizadores')
+
+
+#Funcoes relativas a pagina listar utilizadores - Final
+

@@ -77,6 +77,8 @@ body {
 }
 
 .main {
+    height: 100%;
+    width: 100%;
     flex: 1;
     padding: 20px;
     background-color: #ffffff;
@@ -117,9 +119,19 @@ body {
     cursor: pointer;
 }
 
+.main-body {
+    height:85%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
 .user-card {
-    height: 33vh;
-    width: 35vh;
+    height: 300px;
+    width: 350px;
+    margin-left: 35px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -162,7 +174,7 @@ body {
 .button-div{
     display: inline;
     height: fit-content;
-    width: 31vh;
+    width: 300px;
     border-style: solid;
     border-radius: 20px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
@@ -171,8 +183,8 @@ body {
 }
 
 .user-card button {
-    width: 25vh;
-    height: 5vh;
+    width: 240px;
+    height: 40px;
     background-color: #2D8A3E;
     color: white;
     border: none;
