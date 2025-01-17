@@ -1,35 +1,3 @@
-const buttonFinal = document.getElementById('buttonFinal');
-buttonFinal.addEventListener('click', () => {
-    const computedStyleDiv1 = window.getComputedStyle(document.getElementById('Middle1')).display; // Obtém o estilo computado de div1
-
-    if (computedStyleDiv1 === 'flex') {
-        document.getElementById('Middle1').style.display = 'none';
-        document.getElementById('Middle2').style.display = 'flex';
-        document.getElementById('buttonVoltar').style.display = 'unset';
-        buttonFinal.textContent = 'Guardar';
-        document.getElementById('separadorSelector1').classList = "separadorSelector";
-        document.getElementById('separadorSelector2').classList = "separadorSelector Selected";
-    } else {
-        // Lógica do botão para guardar
-    }
-});
-
-
-const buttonVoltar = document.getElementById('buttonVoltar');
-buttonVoltar.addEventListener('click', () => {
-    const computedStyleDiv1 = window.getComputedStyle(document.getElementById('Middle2')).display; // Obtém o estilo computado de div1
-
-    if (computedStyleDiv1 === 'flex') {
-        document.getElementById('Middle2').style.display = 'none';
-        document.getElementById('Middle1').style.display = 'flex';
-        document.getElementById('buttonVoltar').style.display = 'none';
-        buttonFinal.textContent = 'Seguinte';
-        document.getElementById('separadorSelector1').classList = "separadorSelector Selected";
-        document.getElementById('separadorSelector2').classList = "separadorSelector";
-    } 
-});
-
-
 const buttonCancelar = document.getElementById('buttonCancelar');
 buttonCancelar.addEventListener('click', () => {
         // Lógica do botão cancelar
@@ -39,6 +7,11 @@ buttonCancelar.addEventListener('click', () => {
 const intensidades = document.querySelectorAll('.opItemIntensidade');
 intensidades.forEach((intensidade) => {
     intensidade.addEventListener('click', () => {
+        if (intensidade.classList.contains('Det')) {
+            console.log('Ação bloqueada: a classe "Det" está presente.');
+            return;
+        }
+
         intensidades.forEach((item) => item.classList.remove('Selected'));
 
         intensidade.classList.add('Selected');
@@ -90,4 +63,67 @@ document.addEventListener('DOMContentLoaded', () => {
             closePopUp();
         }
     });
+});
+
+const separadores = document.querySelectorAll('.separadorSelector');
+// Adiciona o evento de clique para cada separador
+separadores.forEach((separador, index) => {
+    separador.addEventListener('click', () => {
+        if (!separador.classList.contains('Det')) {
+            console.log('Ação bloqueada: a classe "Det" não está presente.');
+            return;
+        }
+
+        if (separador.classList.contains('Selected')) {
+            console.log('Ação bloqueada: a classe "Selected" está presente.');
+            return;
+        }
+
+        separadores.forEach((s) => s.classList.remove('Selected'));
+
+        separador.classList.add('Selected');
+
+        const div1 = document.getElementById('Middle1');
+        const div2 = document.getElementById('Middle2');
+
+        if (index === 0) {
+            div1.style.display = 'flex';
+            div2.style.display = 'none';
+        } else if (index === 1) {
+            div1.style.display = 'none';
+            div2.style.display = 'flex';
+        }
+    });
+});
+
+
+const buttonFinal = document.getElementById('buttonFinal');
+buttonFinal.addEventListener('click', () => {
+    const computedStyleDiv1 = window.getComputedStyle(document.getElementById('Middle1')).display; // Obtém o estilo computado de div1
+
+    if (computedStyleDiv1 === 'flex') {
+        document.getElementById('Middle1').style.display = 'none';
+        document.getElementById('Middle2').style.display = 'flex';
+        document.getElementById('buttonVoltar').style.display = 'unset';
+        buttonFinal.textContent = 'Guardar';
+        document.getElementById('separadorSelector1').classList = "separadorSelector";
+        document.getElementById('separadorSelector2').classList = "separadorSelector Selected";
+    } else {
+        // Lógica do botão para guardar
+    }
+});
+
+
+const buttonVoltar = document.getElementById('buttonVoltar');
+buttonVoltar.addEventListener('click', () => {
+    const computedStyleDiv1 = window.getComputedStyle(document.getElementById('Middle2')).display; // Obtém o estilo computado de div1
+
+    if (computedStyleDiv1 === 'flex') {
+        document.getElementById('Middle2').style.display = 'none';
+        document.getElementById('Middle1').style.display = 'flex';
+        document.getElementById('buttonVoltar').style.display = 'none';
+        buttonFinal.textContent = 'Seguinte';
+        document.getElementById('separadorSelector1').classList = "separadorSelector Selected";
+        document.getElementById('separadorSelector2').classList = "separadorSelector";
+    } 
 });

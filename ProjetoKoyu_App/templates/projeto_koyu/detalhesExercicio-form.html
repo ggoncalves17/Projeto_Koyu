@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes Exercício - KÖYÜ</title>    
+    <link href="{% static 'css/style-addExercicio.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="Container">
+        <div class="Top">
+            <div>
+                <!-- Substituir pela logo -->
+                <h1 class="logo">KÖYÜ</h1>
+                <span class="Separador"></span>
+                <span class="tituloLogo">Detalhes Exercício</span>
+            </div>
+            <button class="buttonCancelar" id="buttonCancelar">Voltar</button>
+        </div>
+        <div class="MiddleContainer">
+            <div class="Middle">
+                <div class="middleLeft">
+                    <div class="inputNome">
+                        <span>Nome</span>
+                        <input type="text" placeholder="Nome do Treino" name="NomeTreino">
+                    </div>
+                    <div class="opVideo">
+                        <span>Vídeo</span>
+                        <div class="inputVideo">
+                            <div class="caminhoFicheiro">Caminho do ficheiro</div>
+                            <label for="videoFile" class="botaoVideo">Ficheiro</label>
+                            <input type="file" id="videoFile" hidden> 
+                        </div>
+                    </div>                                   
+                    <div class="inputEquipamentos">
+                        <span>Equipamentos</span>
+                        <div class="equipamentosContainer">
+                            <div class="listaEquipamentos">
+                                <div class="itemSelfselect">
+                                    <div class="fotoItemselect"></div>
+                                    <span>Nome</span>
+                                </div>
+                            </div>                       
+                        </div>
+                    </div>
+                </div>
+                <div class="middleRight">
+                    <div class="inputsTop">
+                        <div class="inputFotoCapa">
+                            <span>Foto de Capa</span>
+                            <div class="divEscolherFoto">
+                                
+                            </div>
+                        </div>
+                        <div class="inputDescricao">
+                            <span>Descrição</span>
+                            <textarea name="descricao" placeholder="Uma breve descrição do treino em si!"></textarea>
+                        </div>
+                    </div>
+                    <div class="opIntensidade">
+                        <span>Intensidade</span>
+                        <div class="intensidadeInside">
+                            <div class="opItemIntensidade Det">Baixa</div>
+                            <div class="opItemIntensidade Det Selected">Média</div>
+                            <div class="opItemIntensidade Det">Alta</div>
+                        </div>
+                    </div>
+                    <div class="opCategoria">
+                        <span>Categoria</span>
+                        <div class="categoriaInside">
+                            <img src="{% static 'images/left-arrow.png' %}" alt="">
+                            <div class="cardCategoria"></div>
+                            <div class="cardCategoria"></div>
+                            <div class="cardCategoria"></div>
+                            <div class="cardCategoria" id="addCategoria"></div>
+                            <img src="{% static 'images/right-arrow.png' %}" alt="">    
+                        </div>                    
+                    </div>                
+                </div>      
+            </div>
+        </div> 
+        <div class="Bottom">
+            <button class="buttonFinal" id="buttonFinal" onclick="location.href='/editarExercicio/'">Editar</button>            
+        </div>
+    </div>
+<script src="{% static 'js/functions.js' %}"></script>  
+</body>
+</html>
