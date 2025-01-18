@@ -170,18 +170,6 @@ body {
 .button-div{
     display: inline;
     height: fit-content;
-    width: 300px;
-    border-style: solid;
-    border-radius: 20px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    border-width: 0px;
-    padding-right: 2px;
-}
-
-
-.button-div{
-    display: inline;
-    height: fit-content;
     width: 220px;
     border-style: solid;
     border-radius: 20px;
@@ -190,7 +178,6 @@ body {
     padding-right: 2px;
     margin: 0 auto;
 }
-
 
 .user-card button {
     width: 150px;
