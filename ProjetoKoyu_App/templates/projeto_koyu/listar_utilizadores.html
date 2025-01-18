@@ -28,7 +28,7 @@
 										fill="white" />
 								</svg></span> Dashboard</li>
 					</a>
-					<a href="{% url 'listar_exercicios' %}" class="navlink">
+					<a href="" class="navlink">
 						<li><span class="icon"><svg width="40" height="35" viewBox="0 0 63 45" fill="none"
 									xmlns="http://www.w3.org/2000/svg">
 									<path
@@ -89,6 +89,7 @@
         </div>
         <div class="main-body"> 
             {% for utilizador in utilizadores %}
+                {% if utilizador.ut_estado != 0 %}
                     <div class="user-card" ut_nome="{{ utilizador.ut_nome }}">
                         <img src="{% static 'images/listar_utilizadores/ProfilePhotos/' %}{{utilizador.ut_foto}}" alt="Profile Picture">
                         <div class="details">
@@ -106,6 +107,7 @@
                             </button>
                         </div>
                     </div>
+                {% endif %}
             {% endfor %}
         </div>
 
@@ -131,7 +133,7 @@
 
             for(let i = 0; i < userCards.length; i++){
                 let userName = userCards[i].getAttribute('ut_nome');
-                if(termoPesquisa == "" || userName.toLowerCase().includes(termoPesquisa)){
+                if(termoPesquisa == "" || userName.toLowerCase() == termoPesquisa){
                     userCards[i].style.display=""
                 }
                 else{
