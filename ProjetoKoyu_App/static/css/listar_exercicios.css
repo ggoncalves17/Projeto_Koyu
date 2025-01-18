@@ -376,3 +376,7 @@ body {
     position: absolute;
     margin-left: 10px;
 }
+
+a {
+    text-decoration: none; 
+  }

@@ -7,6 +7,7 @@
     <title>Listar Treinos</title>
     <link rel="stylesheet" type="text/css" href="{% static '/css/listar_utilizadores.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/menu_lateral.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/popup.css' %}">
 </head>
 <body>
     
@@ -28,7 +29,7 @@
 										fill="white" />
 								</svg></span> Dashboard</li>
 					</a>
-					<a href="" class="navlink">
+					<a href="{% url 'listar_exercicios' %}" class="navlink">
 						<li><span class="icon"><svg width="40" height="35" viewBox="0 0 63 45" fill="none"
 									xmlns="http://www.w3.org/2000/svg">
 									<path
@@ -147,8 +148,8 @@
             let treinosCards = document.getElementsByClassName('treinos-card');
 
             for(let i = 0; i < treinosCards.length; i++){
-                let treinosName = treinosCards[i].getAttribute('ut_nome');
-                if(termoPesquisa == "" || treinosName.toLowerCase() == termoPesquisa){
+                let treinosName = treinosCards[i].getAttribute('treino_nome');
+                if(termoPesquisa == "" || treinosName.toLowerCase().includes(termoPesquisa)){
                     treinosCards[i].style.display=""
                 }
                 else{
@@ -159,9 +160,9 @@
 
         let idTreino = null; 
 
-        function showPopup(popupId, utilizadorId) {
-            idUtilizador = utilizadorId; 
-            console.log(idUtilizador);
+        function showPopup(popupId, treinoId) {
+            idTreino = treinoId; 
+            console.log(idTreino);
             const popup = document.getElementById(popupId);
             popup.style.display = "flex"; 
             document.body.classList.add('popup-aberto'); 
