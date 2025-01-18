@@ -1,12 +1,11 @@
-
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
-from .models import Utilizador, UtilizadorManager
+from .models import Equipamento, Exercicios, Historico, PlanoTreinos, Utilizador, UtilizadorManager
 from .forms import UtilizadorForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
 from django.http import HttpResponse
 
 # Página inicial
@@ -34,94 +33,70 @@ def login_view(request):
 
         utilizador = authenticate(request, ut_mail=email, password=password)
 
-        print(utilizador)
-
-        if utilizador is not None and utilizador.ut_tipo == "Gestor":
-
-            login(request, utilizador)
-            messages.success(request, "Credenciais Corretas.")
-            return redirect("/")
+        if utilizador is not None and utilizador.ut_estado == 1:
+            # Caso o utilizador seja Gestor vai para dashboard
+            if utilizador.ut_tipo == "Gestor":
+                login(request, utilizador)
+                return redirect("/dashboard")
+            # Caso o utilizador seja utilizador comum, fica na mesma página pois apenas foi desenvolvido a parte do gestor
+            else:
+                messages.error(request, "Credenciais Corretas (Páginas Utilizador em Desenvolvimento)")
         else:
             messages.error(request, "Credenciais Incorretas.")
 
     return render(request, "projeto_koyu/login.html")
 
+@login_required
 def dashboard(request):
-    return render(request, 'projeto_koyu/dashboard.html')
+    #Menu
+    if request.method == "POST":
+        exercicios = request.POST.get("exercicios")
+        treinos = request.POST.get("treinos")
+        utilizadores = request.POST.get("utilizadores")
+        perfil = request.POST.get("perfil")
+        
+        if utilizadores: 
+            return redirect("/listar_utilizadores")
 
+    #Estatisticas
+    utilizadores = Utilizador.objects.all()
+    n_utilizadores = len(utilizadores)
+    exercicios = Exercicios.objects.all()
+    n_exercicios = len(exercicios)
+    treinosrealizados = Historico.objects.all()
+    n_treinosrealizados = len(treinosrealizados)
+
+    #Historico
+    ultimos_treinos = PlanoTreinos.objects.order_by('-id')[:5]
+    ultimos_exercicios = Exercicios.objects.order_by('-id')[:5]
+    ultimos_users = Utilizador.objects.order_by('-id')[:5]
+    ultimos_equipamentos = Equipamento.objects.order_by('-id')[:5]
+
+    return render(request, 'projeto_koyu/dashboard.html',{'n_utilizadores':n_utilizadores,'n_exercicios':n_exercicios,'n_treinosrealizados':n_treinosrealizados,
+                                                          'ultimos_treinos':ultimos_treinos,'ultimos_exercicios':ultimos_exercicios,
+                                                          'ultimos_users':ultimos_users,'ultimos_equipamentos':ultimos_equipamentos})
+
+#Funcoes relativas a pagina listar utilizadores
+@login_required
 def listar_utilizadores(request):
-    return render(request, 'projeto_koyu/listar_utilizadores.html')
+    utilizadores = Utilizador.objects.all()
+    return render(request, 'projeto_koyu/listar_utilizadores.html', {'utilizadores':utilizadores})
+  
+@login_required
+def apagar_utilizador(request, ut_id):
+    utilizador = get_object_or_404(Utilizador, id=ut_id)
+    utilizador.ut_estado = 0
+    utilizador.save()
+    return redirect('listar_utilizadores')
 
-# View de adicionar utilizador
-def adicionar_utilizador_view(request):
+#Funcoes relativas a pagina listar treinos
+def listar_treinos(request):
+    treinos = PlanoTreinos.objects.all().order_by('id')  # Obtém todos os treinos
+    return render(request, 'projeto_koyu/listar_treinos.html', {'treinos': treinos})
+
+def eliminar_treino(request, treino_id):
+    treino = get_object_or_404(PlanoTreinos, id=treino_id)
     if request.method == 'POST':
-        nome = request.POST.get('nome')
-        email = request.POST.get('email')
-        contacto = request.POST.get('contacto')
-        tipo_utilizador = request.POST.get('tipo_utilizador') 
-        if tipo_utilizador == "Utilizador":
-            nif=request.POST.get('nif')
-        else:
-            nif=0
-
-        # Verifica se o utilizador já existe
-        if Utilizador.objects.filter(ut_mail=email).exists():
-            messages.error(request, "Utilizador já existe!")
-        elif nif and not nif.isdigit():
-            messages.error(request, "NIF deve conter apenas números.")
-        else:
-            user = Utilizador.objects.create_user(
-                email=email, 
-                password="teste", 
-                ut_nome=nome, 
-                ut_telefone=contacto, 
-                ut_nif=nif,
-                ut_tipo=tipo_utilizador, 
-                ut_estado=1,
-                ut_foto="nada"
-            )
-            messages.success(request, "Utilizador adicionado com sucesso!")
-            return redirect("/") 
-
-    return render(request, 'projeto_koyu/adicionar_utilizador.html')
-
-
-# View de editar utilizador
-def editar_utilizador_view(request, id):
-    user = get_object_or_404(Utilizador, id=id) 
-
-    if request.method == 'POST':
-        nome = request.POST.get('nome')
-        email = request.POST.get('email')
-        contacto = request.POST.get('contacto')
-        nif = request.POST.get('nif')
-
-        # Atualiza os dados do utilizador
-        user.username = nome
-        user.email = email
-        user.contacto = contacto  
-        user.nif = nif 
-        try:
-            user.save()
-            messages.success(request, "Utilizador atualizado com sucesso!")
-            return redirect('homepage')
-        except Exception as e:
-            messages.error(request, f"Erro ao atualizar utilizador: {str(e)}")
-
-    return render(request, 'projeto_koyu/editar_utilizador.html', {'user': user})
-
-# View de detalhes utilizador
-def detalhes_utilizador_view(request, id):
-    user = get_object_or_404(Utilizador, id=id)
-
-    if request.method == 'POST':
-        if 'editar' in request.POST:
-            messages.info(request, f"Editar utilizador: {user.username}")
-            return redirect('editar_utilizador', id=user.id)
-        elif 'desativar' in request.POST:
-            user.is_active = False
-            user.save()
-            messages.success(request, f"Utilizador {user.username} foi desativado.")
-            return redirect('homepage')
-
-    return render(request, 'projeto_koyu/detalhes_utilizador.html', {'user': user})
+        treino.delete()
+        return redirect('listar_treinos')
+    return redirect('listar_treinos')
