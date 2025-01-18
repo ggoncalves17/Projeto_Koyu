@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const textoInferior = document.getElementById("texto-inferior");
     const campoNIF = document.getElementById("campo-nif");
     const campoContacto = document.getElementById("campo-contacto");
-    const tipoUtilizador = document.getElementById("tipo-utilizador"); // Campo oculto
+    const tipoUtilizador = document.getElementById("tipo-utilizador"); 
+    const btnCancelar = document.getElementById("btnCancelar");
 
     let isUtilizador = true; // Estado inicial (assume que começa como Utilizador)
 
@@ -40,4 +41,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         isUtilizador = !isUtilizador;
     });
+
+    // Redireciona para listar utilizadores ao clicar no botão Cancelar
+    if (btnCancelar) {
+        btnCancelar.addEventListener("click", () => {
+            const url = btnCancelar.getAttribute("data-url");
+            window.location.href = url;
+        });
+    }
 });

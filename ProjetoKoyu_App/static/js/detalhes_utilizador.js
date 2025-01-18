@@ -1,10 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const botaoHistorico = document.getElementById("botao-historico"); 
-    const textoHistorico = document.getElementById("texto-historico"); 
-    const switchElement = document.getElementById("switch"); 
+    const botaoHistorico = document.getElementById("botao-historico");
+    const textoHistorico = document.getElementById("texto-historico");
+    const switchElement = document.getElementById("switch");
     const textoSuperior = document.getElementById("texto-superior");
-    const textoInferior = document.getElementById("texto-inferior"); 
+    const textoInferior = document.getElementById("texto-inferior");
     const historicoContainer = document.querySelector(".historico-treino-container");
+    const btnCancelar = document.getElementById("btnCancelar");
+    const btnEditar = document.getElementById("btnEditar");
 
     let isAtivo = false;
     let isUtilizador = true;
@@ -38,11 +40,27 @@ document.addEventListener("DOMContentLoaded", () => {
             textoHistorico.textContent = "";
         } else {
             botaoHistorico.classList.remove("ativo");
-            textoHistorico.textContent = "Histórico de Treino"; 
+            textoHistorico.textContent = "Histórico de Treino";
         }
         isAtivo = !isAtivo;
     });
 
     // Inicializar a visibilidade do botão com base no estado inicial
     atualizarVisibilidadeHistorico();
+
+    // Redireciona para listar utilizadores ao clicar no botão Editar
+    if (btnEditar) {
+        btnEditar.addEventListener("click", () => {
+            const url = btnEditar.getAttribute("data-url");
+            window.location.href = url;
+        });
+    }
+
+    // Redireciona para listar utilizadores ao clicar no botão Cancelar
+    if (btnCancelar) {
+        btnCancelar.addEventListener("click", () => {
+            const url = btnCancelar.getAttribute("data-url");
+            window.location.href = url;
+        });
+    }
 });

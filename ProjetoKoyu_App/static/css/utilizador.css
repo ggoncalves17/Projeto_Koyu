@@ -67,7 +67,7 @@ body {
   background-color: #9fc6a125;
   transition: background-color 0.3s ease, color 0.3s ease;
   margin-bottom: 15px; 
-}
+  }
   
   .menu li:hover {
     background-color: #2e7d32;
@@ -281,7 +281,7 @@ header h1 {
     color: #379A3C;
 }
 
-form {
+.caixas {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
