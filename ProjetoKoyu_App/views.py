@@ -6,6 +6,7 @@ from .forms import UtilizadorForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from django.http import HttpResponse
 
 # Página inicial
@@ -95,6 +96,7 @@ def eliminar_treino(request, treino_id):
     return redirect('listar_treinos')
 
 # View de adicionar utilizador
+@login_required
 def adicionar_utilizador_view(request):
     if request.method == 'POST':
         nome = request.POST.get('nome')
@@ -185,3 +187,8 @@ def apagar_utilizador(request, ut_id):
     utilizador.ut_estado = 0
     utilizador.save()
     return redirect('listar_utilizadores')
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect("/login")
