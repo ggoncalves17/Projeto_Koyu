@@ -62,6 +62,11 @@ input{
     font-size: 40px;
     margin: 0px;
 }
+#logo{    
+    font-size: 40px;
+    margin: 0px;
+    width: 130px;
+}
 
 .tituloLogo{
     color: #78997A;

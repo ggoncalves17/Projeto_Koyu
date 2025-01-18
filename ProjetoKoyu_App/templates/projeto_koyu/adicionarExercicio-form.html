@@ -1,117 +1,131 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Exercício - KÖYÜ</title>    
-    <link href="{% static 'css/style-addExercicio.css' %}" rel="stylesheet">
-</head>
-<body>
-    <div class="Container">
-        <div class="Top">
-            <div>
-                <!-- Substituir pela logo -->
-                <h1 class="logo">KÖYÜ</h1>
-                <span class="Separador"></span>
-                <span class="tituloLogo">Adicionar Exercício</span>
-            </div>
-            <button class="buttonCancelar" id="buttonCancelar">Cancelar</button>
-        </div>
-        <div class="MiddleContainer">
-            <div class="Middle">
-                <div class="middleLeft">
-                    <div class="inputNome">
-                        <span>Nome</span>
-                        <input type="text" placeholder="Nome do Treino" name="NomeTreino">
+    {% load static %}
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Adicionar Exercício - KÖYÜ</title>    
+        <link href="{% static 'css/style-addExercicio.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="Container">        
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %} 
+                <div class="Top">
+                    <div>
+                        <!-- Substituir pela logo -->
+                        <h1 class="logo">KÖYÜ</h1>
+                        <span class="Separador"></span>
+                        <span class="tituloLogo">Adicionar Exercício</span>
                     </div>
-                    <div class="opVideo">
-                        <span>Vídeo</span>
-                        <div class="inputVideo">
-                            <div class="caminhoFicheiro">Caminho do ficheiro</div>
-                            <label for="videoFile" class="botaoVideo">Ficheiro</label>
-                            <input type="file" id="videoFile" hidden> 
-                        </div>
-                    </div>                                   
-                    <div class="inputEquipamentos">
-                        <span>Equipamentos</span>
-                        <div class="equipamentosContainer">
-                            <div class="pesquisaEquipamentos">
-                                <img src="{% static 'images/search2.png' %}" alt="Ícone de Pesquisa" class="iconePesquisa">
-                                <input type="text" placeholder="Pesquisar..." class="inputPesquisar">
+                    <button class="buttonCancelar" id="buttonCancelar">Cancelar</button>
+                </div>
+                <div class="MiddleContainer">
+                    <div class="Middle">
+                        <div class="middleLeft">
+                            <div class="inputNome">
+                                <span>Nome</span>
+                                <input type="text" placeholder="Nome do Exercicio" name="nomeExercicio">
                             </div>
-                            <div class="listaEquipamentos">
-                                <div class="itemSelfselect">
-                                    <div class="buttonItem">
-                                        <img src="{% static 'images/setting.png' %}"></img>
-                                    </div>
-                                    <div class="fotoItemselect"></div>
-                                    <span>Nome</span>
+                            <div class="opVideo">
+                                <span>Vídeo</span>
+                                <div class="inputVideo">
+                                    <div class="caminhoFicheiro" id="caminhoFicheiro" readonly>Caminho do ficheiro</div>
+                                    <label for="videoFile" class="botaoVideo">Ficheiro</label>
+                                    <input type="file" id="videoFile" accept="video/*" hidden name="videoExercicio"> 
                                 </div>
-                            </div>                       
+                            </div>  
+                            <div class="inputEquipamentos">
+                                <span>Equipamentos</span>
+                                <div class="equipamentosContainer">
+                                    <div class="pesquisaEquipamentos">
+                                        <img src="{% static 'images/search2.png' %}" alt="Ícone de Pesquisa" class="iconePesquisa">
+                                        <input type="text" placeholder="Pesquisar..." class="inputPesquisar" id="pesquisarEquipamentos">
+                                    </div>
+                                    <div class="listaEquipamentos" id="listaEquipamentos">                
+                                        {% for equipamento in equipamentos %}
+                                            <div class="itemSelfselect" value="{{ equipamento.id }}">
+                                                <div class="buttonItem">
+                                                    <img src="{% static 'images/setting.png' %}" alt="Ícone de Equipamento">
+                                                </div>
+                                                <img class="fotoItemselect" src="{{ equipamento.eq_foto }}" alt="{{ equipamento.eq_nome }}">
+                                                <span class="nomeEquipamento">{{ equipamento.eq_nome }}</span>
+                                            </div>
+                                        {% endfor %}
+                                    </div>                       
+                                </div>
+                            </div>                            
                         </div>
+                        <div class="middleRight">
+                            <div class="inputsTop">
+                                <div class="inputFotoCapa">
+                                    <span>Foto de Capa</span>
+                                    <div class="divEscolherFoto">
+                                        <img src="{% static 'images/camera-botao.png' %}" alt="Selecionar Foto">
+                                    </div>
+                                    <input type="file" accept="image/*" id="fotoCapaInput" name="fotoCapaFile" hidden>
+                                </div>                            
+                                <div class="inputDescricao">
+                                    <span>Descrição</span>
+                                    <textarea name="descricaoExercicio" placeholder="Uma breve descrição do treino em si!"></textarea>
+                                </div>
+                            </div>
+                            <div class="opIntensidade">
+                                <span>Intensidade</span>
+                                <div class="intensidadeInside">
+                                    <div class="opItemIntensidade">Baixa</div>
+                                    <div class="opItemIntensidade Selected">Média</div>
+                                    <div class="opItemIntensidade">Alta</div>
+                                </div>
+                            </div>
+                            <div class="opCategoria">
+                                <span>Categoria</span>
+                                <div class="categoriaInside">
+                                    <img src="{% static 'images/left-arrow.png' %}" alt="">
+                                    {% for categoria in categorias %}
+                                        <div class="cardCategoria" value="{{ categoria.id }}">
+                                            <img src="{{ categoria.ca_foto }}" alt="{{ categoria.ca_nome }}">
+                                        </div>
+                                    {% endfor %}
+                                    <div class="cardCategoria" style="opacity: 1;" id="addCategoria">
+                                        <img src="{% static 'images/add-Categoria.png' %}">
+                                    </div>
+                                    <img src="{% static 'images/right-arrow.png' %}" alt="">    
+                                </div>                    
+                            </div>                
+                        </div>      
                     </div>
+                </div> 
+                <div class="Bottom">
+                    <button class="buttonFinal" id="buttonFinal">Guardar</button>      
+                    {% comment %} Oculto {% endcomment %}
+                    <input type="hidden" name="categoriasSelecionada" id="categoriasSelecionadas">
+                    <input type="hidden" name="equipamentoSelecionado" id="equipamentoSelecionado">     
+                    <input type="hidden" id="intensidadeSelecionada" name="intensidade" value="Média">  
                 </div>
-                <div class="middleRight">
-                    <div class="inputsTop">
-                        <div class="inputFotoCapa">
-                            <span>Foto de Capa</span>
-                            <div class="divEscolherFoto">
-                            <img src="{% static 'images/camera-botao.png' %}" alt="">
-                            </div>
-                        </div>
-                        <div class="inputDescricao">
-                            <span>Descrição</span>
-                            <textarea name="descricao" placeholder="Uma breve descrição do treino em si!"></textarea>
-                        </div>
-                    </div>
-                    <div class="opIntensidade">
-                        <span>Intensidade</span>
-                        <div class="intensidadeInside">
-                            <div class="opItemIntensidade">Baixa</div>
-                            <div class="opItemIntensidade Selected">Média</div>
-                            <div class="opItemIntensidade">Alta</div>
-                        </div>
-                    </div>
-                    <div class="opCategoria">
-                        <span>Categoria</span>
-                        <div class="categoriaInside">
-                            <img src="{% static 'images/left-arrow.png' %}" alt="">
-                            <div class="cardCategoria"></div>
-                            <div class="cardCategoria"></div>
-                            <div class="cardCategoria"></div>
-                            <div class="cardCategoria" id="addCategoria">
-                                <img src="{% static 'images/add-Categoria.png' %}">
-                            </div>
-                            <img src="{% static 'images/right-arrow.png' %}" alt="">    
-                        </div>                    
-                    </div>                
-                </div>      
             </div>
-        </div> 
-        <div class="Bottom">
-            <button class="buttonFinal" id="buttonFinal">Guardar</button>            
-        </div>
-    </div>
-    <div class="shadowBox" style="display: none;">
-        <div class="addEquipamentoPop" style="display: none;"> 
-            <div class="popUpFoto">
-                <div class="selectFotoPop">
-                    <img src="{% static 'images/camera-botao.png' %}">
+            <div class="shadowBox" style="display: none;">
+                <div class="addEquipamentoPop" style="display: none;"> 
+                    <div class="popUpFoto">
+                        <img style="display: none;" id="fotoEquipamento">
+                        <div class="selectFotoPop">
+                            <img src="{% static 'images/camera-botao.png' %}">
+                            <input type="file" accept="image/*" id="fotoEquipamentoInput" name="fotoEquipamentoFile" hidden>
+                        </div>
+                    </div>         
+                    <div style="height: 100%; justify-content: space-evenly; display: flex; flex-direction: column;"> 
+                        <div class="inputNome">
+                            <span>Nome</span>
+                            <input type="text" placeholder="Nome do equipamento" name="nomeEquipamento">
+                        </div>
+                        <div class="divButtonPop">
+                            <button class="buttonCancelar popUpButton" id="buttonRemoverPop" style="font-size: 12px;">Remover</button>  
+                            <button class="buttonFinal popUpButton" style="margin-right: 0px; font-size: 12px;" id="buttonConfirmarPop">Confirmar</button>   
+                        </div>
+                    </div> 
                 </div>
-            </div>         
-            <div style="height: 100%; justify-content: space-evenly; display: flex; flex-direction: column;"> 
-                <div class="inputNome">
-                    <span>Nome</span>
-                    <input type="text" placeholder="Nome do equipamento" name="NomeEquipamento">
-                </div>
-                <div class="divButtonPop">
-                    <button class="buttonCancelar popUpButton" id="buttonRemoverPop" style="font-size: 12px;">Remover</button>  
-                    <button class="buttonFinal popUpButton" style="margin-right: 0px; font-size: 12px;" id="buttonConfirmarPop">Confirmar</button>   
-                </div>
-            </div> 
-        </div>
-    </div>
-<script src="{% static 'js/functions.js' %}"></script>  
-</body>
-</html>
+            </div>
+        </form>
+    <script src="{% static 'js/functions.js' %}"></script>  
+    </body>
+    </html>

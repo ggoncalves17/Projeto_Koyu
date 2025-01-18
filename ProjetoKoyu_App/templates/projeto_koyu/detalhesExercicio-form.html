@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes Exercício - KÖYÜ</title>    
     <link href="{% static 'css/style-addExercicio.css' %}" rel="stylesheet">
+    <link href="{% static 'css/detalhesExercicio.css' %}" rel="stylesheet">
 </head>
 <body>
     <div class="Container">
         <div class="Top">
             <div>
-                <!-- Substituir pela logo -->
-                <h1 class="logo">KÖYÜ</h1>
+                <img src="{% static 'images/koyu.png' %}" id="logo" alt="">
                 <span class="Separador"></span>
                 <span class="tituloLogo">Detalhes Exercício</span>
             </div>
@@ -23,23 +23,23 @@
                 <div class="middleLeft">
                     <div class="inputNome">
                         <span>Nome</span>
-                        <input type="text" placeholder="Nome do Treino" name="NomeTreino">
+                        <input type="text" value="{{ exercicio.ex_nome }}" readonly style="cursor: auto;">
                     </div>
                     <div class="opVideo">
                         <span>Vídeo</span>
                         <div class="inputVideo">
-                            <div class="caminhoFicheiro">Caminho do ficheiro</div>
-                            <label for="videoFile" class="botaoVideo">Ficheiro</label>
-                            <input type="file" id="videoFile" hidden> 
+                            <div class="caminhoFicheiro">{{ exercicio.ex_video }}</div>
                         </div>
                     </div>                                   
                     <div class="inputEquipamentos">
-                        <span>Equipamentos</span>
+                        <span>Equipamento</span>
                         <div class="equipamentosContainer">
                             <div class="listaEquipamentos">
                                 <div class="itemSelfselect">
-                                    <div class="fotoItemselect"></div>
-                                    <span>Nome</span>
+                                    <div class="fotoItemselect">
+                                        <img src="{{ exercicio.equipamento.eq_foto }}" alt="{{ exercicio.equipamento.eq_nome }}">
+                                    </div>
+                                    <span>{{ exercicio.equipamento.eq_nome }}</span>
                                 </div>
                             </div>                       
                         </div>
@@ -50,31 +50,31 @@
                         <div class="inputFotoCapa">
                             <span>Foto de Capa</span>
                             <div class="divEscolherFoto">
-                                
+                                <img src="{{ exercicio.ex_foto }}" alt="{{ exercicio.ex_nome }}">
                             </div>
                         </div>
                         <div class="inputDescricao">
                             <span>Descrição</span>
-                            <textarea name="descricao" placeholder="Uma breve descrição do treino em si!"></textarea>
+                            <textarea readonly style="cursor: auto;">{{ exercicio.ex_descricao }}</textarea>
                         </div>
                     </div>
                     <div class="opIntensidade">
                         <span>Intensidade</span>
                         <div class="intensidadeInside">
-                            <div class="opItemIntensidade Det">Baixa</div>
-                            <div class="opItemIntensidade Det Selected">Média</div>
-                            <div class="opItemIntensidade Det">Alta</div>
+                            <div class="opItemIntensidade Det {% if exercicio.ex_intensidade == 'Baixa' %}Selected{% endif %}" style="cursor: auto;">Baixa</div>
+                            <div class="opItemIntensidade Det {% if exercicio.ex_intensidade == 'Média' %}Selected{% endif %}" style="cursor: auto;">Média</div>
+                            <div class="opItemIntensidade Det {% if exercicio.ex_intensidade == 'Alta' %}Selected{% endif %}" style="cursor: auto;">Alta</div>
                         </div>
                     </div>
-                    <div class="opCategoria">
-                        <span>Categoria</span>
-                        <div class="categoriaInside">
-                            <img src="{% static 'images/left-arrow.png' %}" alt="">
-                            <div class="cardCategoria"></div>
-                            <div class="cardCategoria"></div>
-                            <div class="cardCategoria"></div>
-                            <div class="cardCategoria" id="addCategoria"></div>
-                            <img src="{% static 'images/right-arrow.png' %}" alt="">    
+                    <div class="opCategoria" >
+                        <span>Categorias</span>
+                        <div class="categoriaInside" >
+                            {% for categoria in exercicio.excercicios_categoria.all %}
+                            <div class="cardCategoria">
+                                <img src="{{ categoria.ca_foto }}" alt="{{ categoria.ca_nome }}">
+                                <span style="cursor: auto;">{{ categoria.ca_nome }}</span>
+                            </div>
+                            {% endfor %}
                         </div>                    
                     </div>                
                 </div>      

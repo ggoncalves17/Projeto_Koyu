@@ -77,11 +77,17 @@ WSGI_APPLICATION = 'ProjetoKoyu.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db2022129956',
+        'USER': 'projetogp',
+        'PASSWORD': 'GP_user_24/25',
+        'HOST': 'aid.estgoh.ipc.pt', 
+        'PORT': '5432',
+        'OPTIONS': {
+            'options': '-c search_path=projetogp'
+        },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

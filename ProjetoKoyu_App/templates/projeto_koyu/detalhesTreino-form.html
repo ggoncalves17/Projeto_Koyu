@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do Treino - KÖYÜ</title>   
     <link href="{% static 'css/style-addTreino.css' %}" rel="stylesheet">
+    <link href="{% static 'css/detalhesTreino.css' %}" rel="stylesheet">
 </head>
 <body>
     <div class="Container">
         <div class="Top">
             <div>
-                <!-- Substituir pela logo -->
-                <h1 class="logo">KÖYÜ</h1>
+                <img src="{% static 'images/koyu.png' %}" id="logo" alt="">
                 <span class="Separador"></span>
                 <span class="tituloLogo">Detalhes do Treino</span>
             </div>
@@ -23,34 +23,26 @@
             <div class="separadorSelector Det" id="separadorSelector2"></div>
         </div>
         <div class="MiddleContainer">
-            <div class="Middle1" id="Middle1">
+            <div class="Middle1" id="Middle1" style="display: flex;">
                 <div class="middleLeft1">
                     <div class="inputNome">
                         <span>Nome</span>
-                        <input type="text" placeholder="Nome do Treino" name="NomeTreino" readonly style="cursor: auto;">
+                        <input type="text" value="{{ treino.pt_nome }}" readonly style="cursor: auto;">
                     </div>
                     <div class="opModalidade">
                         <span>Modalidade</span>
                         <div class="modalidadeInside">
-                            <img src="{% static 'images/left-arrow.png' %}" alt="">
                             <div class="optionsCardsModalidade">
                                 <div class="cardModalidade" style="cursor: auto;">
-                                    <span>MÖVE</span>
-                                </div>
-                                <div class="cardModalidade" style="cursor: auto;">
-                                    <span>PÜMP</span>
-                                </div>
-                                <div class="cardModalidade" style="cursor: auto;">
-                                    <span>JÜMP</span>
+                                    <span>{{ treino.modalidade.ca_nome }}</span>
                                 </div>
                             </div>
-                            <img src="{% static 'images/right-arrow.png' %}" alt="">
                         </div>
                     </div>
                     <div class="inputDuracao">
                         <span>Duração</span>
                         <div class="duracaoInside">
-                            <input type="text" placeholder="000" maxlength="3" name="NomeTreino" readonly style="cursor: auto;">
+                            <input type="text" value="{{ treino.duracao }}" readonly style="cursor: auto;">
                             <div class="divDuracaoText">Minutos</div>
                         </div>
                     </div>
@@ -60,49 +52,53 @@
                         <div class="inputFotoCapa">
                             <span>Foto de Capa</span>
                             <div class="divEscolherFoto" style="cursor: auto;">
-
-                            </div>  
+                                <img src="{{ treino.pt_foto }}" alt="Foto do treino" style="width: 100%; height: auto;">
+                            </div>
                         </div>
                         <div class="inputDescricao">
                             <span>Descrição</span>
-                            <textarea name="descricao" placeholder="Uma breve descrição do treino em si!" readonly style="cursor: auto;"></textarea>
+                            <textarea readonly style="cursor: auto;">{{ treino.descricao }}</textarea>
                         </div>
                     </div>
                     <div class="opIntensidade">
                         <span>Intensidade</span>
-                        <div class="intensidadeInside" >
-                            <div class="opItemIntensidade Det" style="cursor: auto;">Baixa</div>
-                            <div class="opItemIntensidade Det Selected" style="cursor: auto;">Média</div>
-                            <div class="opItemIntensidade Det" style="cursor: auto;">Alta</div>
+                        <div class="intensidadeInside">
+                            <div class="opItemIntensidade Det {% if treino.intensidade == 'Baixa' %}Selected{% endif %}" style="cursor: auto;">Baixa</div>
+                            <div class="opItemIntensidade Det {% if treino.intensidade == 'Média' %}Selected{% endif %}" style="cursor: auto;">Média</div>
+                            <div class="opItemIntensidade Det {% if treino.intensidade == 'Alta' %}Selected{% endif %}" style="cursor: auto;">Alta</div>
                         </div>
-                    </div>
-                    <div class="opCategoria">
-                        <span>Categoria</span>
-                        <div class="categoriaInside">
-                            <img src="{% static 'images/left-arrow.png' %}" alt="">
-                            <div class="cardCategoria" style="cursor: auto;"></div>
-                            <div class="cardCategoria" style="cursor: auto;"></div>
-                            <div class="cardCategoria" style="cursor: auto;"></div>
-                            <div class="cardCategoria" style="cursor: auto;"></div>
-                            <img src="{% static 'images/right-arrow.png' %}" alt="">    
-                        </div>                    
+                        <div class="opCategoria">
+                            <span>Categorias</span>
+                            <div class="categoriaInside">
+                                {% for categoria in categoria.categoria_planostreino.all %}
+                                <div class="cardCategoria" style="cursor: auto;">
+                                    <img src="{{ categoria.ca_foto }}" alt="{{ categoria.ca_nome }}" style="width: 50px; height: 50px;">
+                                    <span>{{ categoria.ca_nome }}</span>
+                                </div>
+                                {% endfor %}
+                            </div>                    
+                        </div>             
                     </div>                
-                </div>                
-            </div>
+                </div>          
+            </div>  
             <div class="Middle2" id="Middle2" style="display: none;">
                 <div class="middleRight2">
                     <span>Exercícios Selecionados</span>
                     <div class="selectedExercicio">
                         <div class="containerItems">
+                            {% for exercicio in exercicios_selecionados %}
                             <div class="itemSelfselected">
-                                <div class="fotoItemselected"></div>
-                                <span>Nome</span>
+                                <div class="fotoItemselected">
+                                    <img src="{{ exercicio.ex_foto }}" alt="Foto do exercício" style="width: 100%; height: auto;">
+                                </div>
+                                <span>{{ exercicio.ex_nome }}</span>
                             </div>
+                            {% endfor %}
                         </div>
                     </div>                                  
                 </div>                
             </div>
-        </div>    
+        </div>
         <div class="Bottom">       
             <button class="buttonEditar" id="buttonEditar" onclick="location.href='/editarTreino/'">
                 <img src="{% static 'images/edit.png' %}" alt="">

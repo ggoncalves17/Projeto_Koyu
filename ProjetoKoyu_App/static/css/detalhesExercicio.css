@@ -1,0 +1,49 @@
+.caminhoFicheiro {
+    background-color: #D7EBD8; 
+    color: #78997A; 
+    border-radius: 25px; 
+    padding: 10px 20px; 
+    outline: none;
+    margin: 0px 5px; 
+    border: none;
+    font-size: 14px;
+}
+.fotoItemselect {
+    width: 100%;
+    height: 75%;
+    border: 2px #396C3B solid;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+}
+
+.fotoItemselect > img {
+    max-height: 100%; 
+    max-width: 100%; 
+    object-fit: contain;
+}
+
+.cardCategoria{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    background-color: #D7EBD8;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 5px;
+    opacity: 0.5;
+}
+
+.cardCategoria > img{
+    height: 30px;
+}
+
+.cardCategoria span {
+    margin-top: 5px; 
+    cursor: pointer;
+}
