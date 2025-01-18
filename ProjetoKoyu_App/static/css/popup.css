@@ -106,7 +106,6 @@
 /*************************/
 /* Pop Up de CONFIRMAÇÃO */
 /*************************/
-
 .popup-confirmacao {
   position: fixed;
   background-color: #ffffff;
@@ -122,11 +121,20 @@
   z-index: 1000;
   max-width: 350px;
   width: 80%;
-  
-  /* Para mover o popup */
-  top: 140px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
+}
+
+body.popup-aberto::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 500;
 }
 
 .popup-confirmacao .message {
