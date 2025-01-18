@@ -212,7 +212,7 @@
 
             <!-- Categoria -->
             
-                <h3>Categoria</h3>
+            <!--   <h3>Categoria</h3>
             <div class="filter-section">
                 <div class="category-options">
                     {% for categoria in categorias %}
@@ -221,7 +221,7 @@
                     </div>
                     {% endfor %}
                 </div>
-            </div>
+            </div>  --> 
         </div>
     </div>
 
@@ -311,36 +311,6 @@
                     }
                 }
                 
-            }
-
-        }
-
-        function filtroModalidade(modalidade){
-            let treinosCards = document.getElementsByClassName('treinos-card');
-
-            for(let i = 0; i < treinosCards.length; i++){
-                let modalidadeTreino = treinosCards[i].getAttribute('modalidade');
-                if(modalidadeTreino == modalidade){
-                    treinosCards[i].style.display=""
-                }
-                else{
-                    treinosCards[i].style.display="none";
-                }
-            }
-
-        }
-
-        function filtroCategoria(categoria){
-            let treinosCards = document.getElementsByClassName('treinos-card');
-
-            for(let i = 0; i < treinosCards.length; i++){
-                let treinosName = treinosCards[i].getAttribute('ut_nome');
-                if(termoPesquisa == "" || treinosName.toLowerCase() == termoPesquisa){
-                    treinosCards[i].style.display=""
-                }
-                else{
-                    treinosCards[i].style.display="none";
-                }
             }
 
         }

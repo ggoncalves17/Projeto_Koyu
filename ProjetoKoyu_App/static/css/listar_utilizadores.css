@@ -345,7 +345,6 @@ a {
     font-size: 18px;
     font-weight: bolder;
     color:#0f6d0f;
-    margin-bottom:100px;
 }
 #minutos-text{
     color:#d7ebd8;
@@ -378,9 +377,14 @@ a {
 }
 
 .filter-container {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 0px;
     padding-left: 10px;
     padding-top: 5px;
+    height: 90%;
+    align-items: center;
+    justify-content: center;
 }
 
 .filter-menu h2 {
