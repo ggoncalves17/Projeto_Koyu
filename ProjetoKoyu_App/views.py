@@ -1,5 +1,5 @@
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from .models import Utilizador, UtilizadorManager
 from .forms import UtilizadorForm
@@ -85,43 +85,49 @@ def adicionar_utilizador_view(request):
 
     return render(request, 'projeto_koyu/adicionar_utilizador.html')
 
-
-# View de editar utilizador
+@login_required
 def editar_utilizador_view(request, id):
-    user = get_object_or_404(Utilizador, id=id) 
+    user = get_object_or_404(Utilizador, id=id)
 
     if request.method == 'POST':
         nome = request.POST.get('nome')
         email = request.POST.get('email')
         contacto = request.POST.get('contacto')
-        nif = request.POST.get('nif')
+        tipo_utilizador = request.POST.get('tipo_utilizador')  
+        if tipo_utilizador == "Utilizador":
+            nif = request.POST.get('nif')
+        else:
+            nif = 0  
+            
+        nif = int(nif) if nif and nif != "0" else 0
+        
+        # Atualiza os campos do utilizador
+        user.ut_nome = nome
+        user.ut_mail = email
+        user.ut_telefone = contacto
+        user.ut_nif = nif  # Remove a vírgula para evitar a criação de uma tupla
+        user.ut_tipo = tipo_utilizador
+        user.ut_foto = "nada"
+        user.save()
+        messages.success(request, "Utilizador atualizado com sucesso!")
+        return redirect("/")  # Redireciona para a página inicial ou outra página desejada
 
-        # Atualiza os dados do utilizador
-        user.username = nome
-        user.email = email
-        user.contacto = contacto  
-        user.nif = nif 
-        try:
-            user.save()
-            messages.success(request, "Utilizador atualizado com sucesso!")
-            return redirect('homepage')
-        except Exception as e:
-            messages.error(request, f"Erro ao atualizar utilizador: {str(e)}")
+    # Renderiza o formulário com os dados do utilizador
+    return render(request, 'projeto_koyu/editar_utilizador.html', {"user": user})
 
-    return render(request, 'projeto_koyu/editar_utilizador.html', {'user': user})
 
 # View de detalhes utilizador
+@login_required
 def detalhes_utilizador_view(request, id):
     user = get_object_or_404(Utilizador, id=id)
 
     if request.method == 'POST':
-        if 'editar' in request.POST:
-            messages.info(request, f"Editar utilizador: {user.username}")
-            return redirect('editar_utilizador', id=user.id)
-        elif 'desativar' in request.POST:
-            user.is_active = False
+        # Verifica a ação enviada
+        if request.POST.get('acao') == 'alternar_estado':
+            user.ut_estado = 0 if user.ut_estado == 1 else 1  # Alterna entre 0 e 1
             user.save()
-            messages.success(request, f"Utilizador {user.username} foi desativado.")
-            return redirect('homepage')
+            estado = "desativado" if user.ut_estado == 0 else "ativado"
+            messages.success(request, f"O estado do utilizador {user.ut_nome} foi {estado} com sucesso!")
+            return redirect('detalhes_utilizador', id=user.id)
 
     return render(request, 'projeto_koyu/detalhes_utilizador.html', {'user': user})

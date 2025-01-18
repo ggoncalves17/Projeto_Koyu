@@ -437,3 +437,10 @@ form {
 .botao-historico.ativo .texto-historico {
     color: #ffffff;
 }
+
+#campo-contacto.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto; /* Garante centralização adicional */
+}
