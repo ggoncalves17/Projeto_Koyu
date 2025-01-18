@@ -79,7 +79,7 @@ def dashboard(request):
 #Funcoes relativas a pagina listar utilizadores
 @login_required
 def listar_utilizadores(request):
-  utilizadores = Utilizador.objects.all()
+    utilizadores = Utilizador.objects.all()
     return render(request, 'projeto_koyu/listar_utilizadores.html', {'utilizadores':utilizadores})
 
 # View de adicionar utilizador
