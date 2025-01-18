@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
 from .models import Equipamento, Exercicios, Historico, PlanoTreinos, Utilizador, UtilizadorManager
 from .forms import UtilizadorForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
 from django.http import HttpResponse
 
 # Página inicial
@@ -81,6 +81,18 @@ def dashboard(request):
 def listar_utilizadores(request):
     utilizadores = Utilizador.objects.all()
     return render(request, 'projeto_koyu/listar_utilizadores.html', {'utilizadores':utilizadores})
+  
+#Funcoes relativas a pagina listar treinos
+def listar_treinos(request):
+    treinos = PlanoTreinos.objects.all().order_by('id')  # Obtém todos os treinos
+    return render(request, 'projeto_koyu/listar_treinos.html', {'treinos': treinos})
+
+def eliminar_treino(request, treino_id):
+    treino = get_object_or_404(PlanoTreinos, id=treino_id)
+    if request.method == 'POST':
+        treino.delete()
+        return redirect('listar_treinos')
+    return redirect('listar_treinos')
 
 # View de adicionar utilizador
 def adicionar_utilizador_view(request):
