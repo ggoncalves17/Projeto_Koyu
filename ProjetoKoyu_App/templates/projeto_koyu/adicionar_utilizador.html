@@ -46,7 +46,7 @@
                     <img src="{% static 'images/GP_LogótipoVerde.png' %}" width="150" alt="Logo" class="logo">
                     <h1>| Adicionar Utilizador</h1>
                 </div>
-                <button class="btn-cancelar">Cancelar</button>
+                <button type="button" id="btnCancelar" class="btn-cancelar" data-url="{% url 'listar_utilizadores' %}">Cancelar</button>
             </header>
             <div class="formulario">
                 <div class="foto-seletor">
@@ -98,24 +98,28 @@
                 
                 <form method="post" action="{% url 'adicionar_utilizador' %}">
                     {% csrf_token %}
-                    <div class="input-group">
-                        <label for="nome">Nome</label>
-                        <input type="text" id="nome" name="nome" placeholder="Nome de Utilizador">
+                    <div class="caixas">
+                        <div class="input-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" name="nome" placeholder="Nome de Utilizador">
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Email do Utilizador">
+                        </div>
+                        <div class="input-group" id="campo-contacto">
+                            <label for="contacto">Contacto</label>
+                            <input type="text" id="contacto" name="contacto" placeholder="Contacto do Utilizador">
+                        </div>
+                        <div class="input-group" id="campo-nif">
+                            <label for="nif">NIF</label>
+                            <input type="text" id="nif" name="nif" placeholder="NIF do Utilizador" pattern="\d{9}">
+                        </div>    
+                    </div>       
+                    <div class="botoes-acao">       
+                        <input type="hidden" id="tipo-utilizador" name="tipo_utilizador" value="Utilizador">
+                        <button type="submit" class="btn-registar">Registar Utilizador</button>   
                     </div>
-                    <div class="input-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Email do Utilizador">
-                    </div>
-                    <div class="input-group" id="campo-contacto">
-                        <label for="contacto">Contacto</label>
-                        <input type="text" id="contacto" name="contacto" placeholder="Contacto do Utilizador">
-                    </div>
-                    <div class="input-group" id="campo-nif">
-                        <label for="nif">NIF</label>
-                        <input type="text" id="nif" name="nif" placeholder="NIF do Utilizador" pattern="\d{9}">
-                    </div>                  
-                    <input type="hidden" id="tipo-utilizador" name="tipo_utilizador" value="Utilizador">
-                    <button type="submit" class="btn-registar">Registar Utilizador</button>   
                 </form>
                
             </div>

@@ -146,6 +146,11 @@ body {
 .user-card:hover {
     transform: scale(1.02); 
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    background-color: #f9f9f9;
 }
 
 .user-card img {
@@ -181,8 +186,8 @@ body {
     margin: 15px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Espaçamento entre título e conteúdo */
-    align-items: center; /* Centraliza horizontalmente */
+    justify-content: space-between; 
+    align-items: center; 
     padding: 20px;
     border-radius: 15px;
     background-color: #ffffff;
@@ -220,6 +225,16 @@ body {
     margin-bottom: 5px;
     font-weight: bolder;
     color:#939393;
+
+.button-div{
+    display: inline;
+    height: fit-content;
+    width: 300px;
+    border-style: solid;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    border-width: 0px;
+    padding-right: 2px;
 }
 
 
@@ -259,7 +274,6 @@ body {
     cursor: pointer;
     font-weight: bolder;
 }
-
 
 /* Menu Lateral */
 .menu-lateral {
@@ -434,7 +448,6 @@ body {
     margin-left: 10px;
 }
 
-
 .card-body {
     text-align: center;
     justify-content: center;
@@ -448,8 +461,8 @@ body {
     display: flex;
     text-align:left;
     justify-content: flex-start;
-    width: 100%; /* Ocupa toda a largura do card */
-    text-align: left; /* Alinha o título à esquerda */
+    width: 100%;
+    text-align: left; 
     margin-bottom: 15px;
 }
 
