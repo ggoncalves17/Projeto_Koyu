@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 16ac5bc4ba32e5d06a49f89cc890a864f719d565
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from .models import Equipamento, Exercicios, Historico, PlanoTreinos, Utilizador, UtilizadorManager
@@ -83,7 +79,8 @@ def dashboard(request):
 #Funcoes relativas a pagina listar utilizadores
 @login_required
 def listar_utilizadores(request):
-    return render(request, 'projeto_koyu/listar_utilizadores.html')
+    utilizadores = Utilizador.objects.all()
+    return render(request, 'projeto_koyu/listar_utilizadores.html', {'utilizadores':utilizadores})
 
 # View de adicionar utilizador
 def adicionar_utilizador_view(request):
@@ -164,8 +161,6 @@ def detalhes_utilizador_view(request, id):
             return redirect('detalhes_utilizador', id=user.id)
 
     return render(request, 'projeto_koyu/detalhes_utilizador.html', {'user': user})
-    utilizadores = Utilizador.objects.all()
-    return render(request, 'projeto_koyu/listar_utilizadores.html', {'utilizadores':utilizadores})
   
 @login_required
 def apagar_utilizador(request, ut_id):
@@ -173,3 +168,13 @@ def apagar_utilizador(request, ut_id):
     utilizador.ut_estado = 0
     utilizador.save()
     return redirect('listar_utilizadores')
+
+#Listar exercicios
+def listar_exercicios(request):
+    exercicios = Exercicios.objects.select_related('equipamento').all()
+    return render(request, 'projeto_koyu/listar_exercicios.html', {'exercicios': exercicios})
+
+def apagar_exercicio(request, exercicio_id):
+    exercicio = get_object_or_404(Exercicios, id=exercicio_id)
+    exercicio.delete()
+    return redirect('listar_exercicios')
