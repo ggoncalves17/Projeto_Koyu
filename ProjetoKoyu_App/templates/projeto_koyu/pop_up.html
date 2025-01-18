@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static '/css/popup.css' %}">
+  <title>Popup de Aviso e Confirmação</title>
+</head>
+<body>
+
+<!-- Pop Up de AVISO -->
+<div id="popup-vermelho" class="popup" style="display: none;">
+    <div class="icon"><b>!</b></div>
+    <div class="message">Não foi possível realizar a operação!</div>
+    <button class="close-btn" onclick="closePopup('popup-vermelho')">x</button>
+</div>
+
+<!-- Pop Up de VERIFICAÇÃO -->
+<div id="popup-verde" class="popup-verde" style="display: none;">
+    <div class="icon"><b>✔</b></div>
+    <div class="message">Operação realizada com sucesso!</div>
+    <button class="close-btn" onclick="closePopup('popup-verde')">x</button>
+</div>
+
+<!-- Pop Up de CONFIRMAÇÃO -->
+<div id="popup-confirmacao" class="popup-confirmacao" style="display: none;">
+    <div class="message">Deseja mesmo confirmar as alterações?</div>
+    <div class="popup-buttons">
+        <button class="confirmar" onclick="confirmarAcao()">Confirmar</button>
+        <button class="cancelar" onclick="closePopup('popup-confirmacao')">Cancelar</button>
+    </div>
+</div>
+
+<script>
+    function showPopup(popupId) {
+        const popup = document.getElementById(popupId);
+        popup.style.display = "flex";
+    }
+
+    function closePopup(popupId) {
+        const popup = document.getElementById(popupId);
+        popup.style.display = "none";
+    }
+
+    function confirmarAcao() {
+        alert('Alterações confirmadas!');
+        closePopup('popup-confirmacao');
+    }
+
+    // Para exibir os popups
+    window.onload = () => {
+        showPopup('popup-vermelho');
+        showPopup('popup-verde');
+        showPopup('popup-confirmacao');
+    };
+</script>
+
+</body>
+</html>
