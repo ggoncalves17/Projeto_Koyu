@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
 from .models import Equipamento, Exercicios, Historico, PlanoTreinos, Utilizador, UtilizadorManager
 from .forms import UtilizadorForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth import logout
 from django.http import HttpResponse
 
 # Página inicial
@@ -162,6 +163,106 @@ def detalhes_utilizador_view(request, id):
 
     return render(request, 'projeto_koyu/detalhes_utilizador.html', {'user': user})
   
+#Funcoes relativas a pagina listar treinos
+@login_required
+def listar_treinos(request):
+    treinos = PlanoTreinos.objects.all().order_by('id')  # Obtém todos os treinos
+    return render(request, 'projeto_koyu/listar_treinos.html', {'treinos': treinos})
+  
+@login_required
+def eliminar_treino(request, treino_id):
+    treino = get_object_or_404(PlanoTreinos, id=treino_id)
+    if request.method == 'POST':
+        treino.delete()
+        return redirect('listar_treinos')
+    return redirect('listar_treinos')
+
+# View de adicionar utilizador
+@login_required
+def adicionar_utilizador_view(request):
+    if request.method == 'POST':
+        nome = request.POST.get('nome')
+        email = request.POST.get('email')
+        contacto = request.POST.get('contacto')
+        tipo_utilizador = request.POST.get('tipo_utilizador') 
+        if tipo_utilizador == "Utilizador":
+            nif=request.POST.get('nif')
+        else:
+            nif=0
+
+        # Verifica se o utilizador já existe
+        if Utilizador.objects.filter(ut_mail=email).exists():
+            messages.error(request, "Utilizador já existe!")
+        elif nif and not nif.isdigit():
+            messages.error(request, "NIF deve conter apenas números.")
+        else:
+            user = Utilizador.objects.create_user(
+                email=email, 
+                password="teste", 
+                ut_nome=nome, 
+                ut_telefone=contacto, 
+                ut_nif=nif,
+                ut_tipo=tipo_utilizador, 
+                ut_estado=1,
+                ut_foto="nada"
+            )
+            messages.success(request, "Utilizador adicionado com sucesso!")
+            return redirect("/") 
+
+    return render(request, 'projeto_koyu/adicionar_utilizador.html')
+
+@login_required
+def editar_utilizador_view(request, id):
+    user = get_object_or_404(Utilizador, id=id)
+
+    if request.method == 'POST':
+        nome = request.POST.get('nome')
+        email = request.POST.get('email')
+        contacto = request.POST.get('contacto')
+        tipo_utilizador = request.POST.get('tipo_utilizador')  
+        if tipo_utilizador == "Utilizador":
+            nif = request.POST.get('nif')
+
+            # Valida o NIF
+            if not nif.isdigit() or len(nif) != 9:
+                messages.error(request, "O NIF deve conter exatamente 9 dígitos.")
+                return render(request, 'projeto_koyu/editar_utilizador.html', {"user": user})
+        else:
+            nif = 0  
+        
+        nif = int(nif) if nif and nif != "0" else 0
+        
+        # Atualiza os campos do utilizador
+        user.ut_nome = nome
+        user.ut_mail = email
+        user.ut_telefone = contacto
+        user.ut_nif = nif
+        user.ut_tipo = tipo_utilizador
+        user.ut_foto = "nada"
+        user.save()
+        messages.success(request, "Utilizador atualizado com sucesso!")
+        return redirect("/")  # Redireciona para a página inicial ou outra página desejada
+
+    # Renderiza o formulário com os dados do utilizador
+    return render(request, 'projeto_koyu/editar_utilizador.html', {"user": user})
+
+
+# View de detalhes utilizador
+@login_required
+def detalhes_utilizador_view(request, id):
+    user = get_object_or_404(Utilizador, id=id)
+
+    if request.method == 'POST':
+        # Verifica a ação enviada
+        if request.POST.get('acao') == 'alternar_estado':
+            user.ut_estado = 0 if user.ut_estado == 1 else 1  # Alterna entre 0 e 1
+            user.save()
+            estado = "desativado" if user.ut_estado == 0 else "ativado"
+            messages.success(request, f"O estado do utilizador {user.ut_nome} foi {estado} com sucesso!")
+            return redirect('detalhes_utilizador', id=user.id)
+
+    return render(request, 'projeto_koyu/detalhes_utilizador.html', {'user': user})
+  
 @login_required
 def apagar_utilizador(request, ut_id):
     utilizador = get_object_or_404(Utilizador, id=ut_id)
@@ -170,11 +271,18 @@ def apagar_utilizador(request, ut_id):
     return redirect('listar_utilizadores')
 
 #Listar exercicios
+@login_required
 def listar_exercicios(request):
     exercicios = Exercicios.objects.select_related('equipamento').all()
     return render(request, 'projeto_koyu/listar_exercicios.html', {'exercicios': exercicios})
 
+@login_required
 def apagar_exercicio(request, exercicio_id):
     exercicio = get_object_or_404(Exercicios, id=exercicio_id)
     exercicio.delete()
     return redirect('listar_exercicios')
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect("/login")

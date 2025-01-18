@@ -1,28 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const circle = document.getElementById("circle");
+    const botaoHistorico = document.getElementById("botao-historico");
+    const textoHistorico = document.getElementById("texto-historico");
+    const switchElement = document.getElementById("switch");
     const textoSuperior = document.getElementById("texto-superior");
     const textoInferior = document.getElementById("texto-inferior");
-    const campoNIF = document.getElementById("campo-nif");
-    const campoContacto = document.getElementById("campo-contacto");
-    const tipoUtilizador = document.getElementById("tipo-utilizador"); // Campo oculto com o tipo do utilizador   
     const historicoContainer = document.querySelector(".historico-treino-container");
     const btnCancelar = document.getElementById("btnCancelar");
     const btnEditar = document.getElementById("btnEditar");
 
-    // Verifica se o utilizador é "Gestor" ou "Utilizador"
-    const isGestor = tipoUtilizador.value === "Gestor";
     let isAtivo = false;
     let isUtilizador = true;
 
-    if (isGestor) {
-        campoContacto.style.display = "flex";
-        campoContacto.style.justifyContent = "center";
-        campoContacto.style.alignItems = "center";
-
-
-    }
-    
-    
     // Verificar o tipo atual (Utilizador ou Administrador) e ajustar visibilidade do histórico
     const atualizarVisibilidadeHistorico = () => {
         if (isUtilizador) {

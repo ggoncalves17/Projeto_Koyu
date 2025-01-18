@@ -11,70 +11,10 @@ body {
     background-color: #f5f5f5;
 }
 
-.sidebar {
-    width: 20%;
-    background-color: #2D8A3E;
-    color: white;
+.container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
-}
-
-.sidebar .logo {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.sidebar .user {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.sidebar .user img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: white;
-    margin-bottom: 10px;
-}
-
-.sidebar .user p {
-    font-size: 14px;
-}
-
-.sidebar .menu {
-    width: 100%;
-}
-
-.sidebar .menu a {
-    display: block;
-    padding: 15px;
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.sidebar .menu a:hover {
-    background-color: #1e5e2b;
-}
-
-.sidebar .logout {
-    margin-top: auto;
-    margin-bottom: 20px;
-}
-
-.sidebar .logout a {
-    display: block;
-    padding: 15px;
-    color: white;
-    text-decoration: none;
-    background-color: #e74c3c;
-    text-align: center;
-    border-radius: 5px;
-}
+    height: 100vh;
+  }
 
 .main {
     height: 100%;
@@ -130,13 +70,22 @@ body {
 
 .user-card {
     height: 300px;
-    width: 350px;
-    margin-left: 35px;
+    width: 300px;
+    margin: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
+    border-radius: 15px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
+}
+
+.user-card:hover {
+    transform: scale(1.02); 
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
     border: 1px solid #ccc;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -171,6 +120,53 @@ body {
     color:#939393;
 }
 
+.treinos-card {
+    height: 300px;
+    width: 300px;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
+}
+
+.treinos-card:hover {
+    transform: scale(1.02); 
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.treinos-card img {
+    width: 190px;
+    height: 180px;
+    border-radius: 50%;
+    border-color: #2D8A3E;
+    border-width: 3px;
+    border-style: solid;
+    background-color: #ddd;
+    object-fit:cover;
+    display: block;
+    padding:0;
+    margin: 0;
+}
+
+.treinos-card .details {
+    height: fit-content;
+    width:fit-content;
+    margin: 10px;
+    flex: 1;
+}
+
+.treinos-card .details p {
+    margin-bottom: 5px;
+    font-weight: bolder;
+    color:#939393;
+}
+
 .button-div{
     display: inline;
     height: fit-content;
@@ -182,8 +178,22 @@ body {
     padding-right: 2px;
 }
 
+
+.button-div{
+    display: inline;
+    height: fit-content;
+    width: 220px;
+    border-style: solid;
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    border-width: 0px;
+    padding-right: 2px;
+    margin: 0 auto;
+}
+
+
 .user-card button {
-    width: 240px;
+    width: 150px;
     height: 40px;
     background-color: #2D8A3E;
     color: white;
@@ -194,125 +204,16 @@ body {
     font-weight: bolder;
 }
 
-/* Menu Lateral */
-.menu-lateral {
-    background-color: #379A3C;
+.treinos-card button {
+    width: 150px;
+    height: 40px;
+    background-color: #2D8A3E;
     color: white;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 40px;
-    border-radius: 0 35px 35px 0;
-    box-sizing: border-box; 
-    position: relative; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
-  }
-
-  .container {
-    display: flex;
-    height: 100vh;
-  }
-  
-  .menu-lateral {
-    background-color: #379A3C;
-    color: white;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 40px;
-    border-radius: 0 35px 35px 0;
-    box-sizing: border-box; 
-    position: relative; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
-  }
-  
-  .perfil {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .foto-perfil {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background-color: white;
-    margin-bottom: 10px;
-    border: 2px solid #2e7d32;
-  }
-  
-  .perfil p {
-    font-size: 16px;
-    margin: 0;
-  }
-  
-  .perfil span {
-    font-weight: bold;
-    font-size: 18px;
-  }
-  
-  .menu {
-    flex-grow: 1;
-    width: 100%;
-  }
-  
-  .menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .menu li {
-  padding: 15px 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  font-size: 16px;
-  background-color: #9fc6a125;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  margin-bottom: 15px; 
-}
-  
-  .menu li:hover {
-    background-color: #2e7d32;
-  }
-  
-  .menu li.ativo {
-    background-color: #2E6831;
-    border-left: 5px solid #ffffff;
-  }
-  
-  .menu li span.icon svg {
-    fill: rgba(255, 255, 255, 0.7);
-  }
-  
-  .menu li.ativo span.icon svg {
-    fill: white;
-  }
-  
-  .logout {
-    background-color: #2E6831; 
-    border: 0px solid #2E6831;
-    color: white; 
-    padding: 20px 40px; 
-    cursor: pointer; 
-    border-radius: 0 0 35px 0; 
-    width: 100%; 
-    display: flex; 
-    justify-content: center;
-    align-items: center; 
-    font-weight: bold; 
-    font-size: 18px; 
-    text-align: left;
-    position:absolute; 
-    bottom: 0; 
-    gap: 15px;
-}
-
-.logout:hover {
-    background-color: #2e7d32; 
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bolder;
 }
 
 .logo-titulo {
@@ -343,6 +244,7 @@ body {
     color:#2D8A3E;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     font-size: large;
+    cursor: pointer;
 }
 
 #search-bar{
@@ -358,11 +260,59 @@ body {
 }
 
 #svg-lixo{
-    margin-bottom:-14px;
-    margin-left: 3px;
+    margin-bottom:-8px;
+    margin-left: 15px;
 }
 
 #svg-lupa{
     position: absolute;
     margin-left: 10px;
+}
+
+a {
+  text-decoration: none; 
+}
+
+.card-body {
+    text-align: center;
+    justify-content: center;
+}
+
+.card-header {
+    font-size: 23px;
+    color: #396C3B;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    text-align:left;
+    justify-content: flex-start;
+    width: 100%;
+    text-align: left; 
+    margin-bottom: 15px;
+}
+
+.treino-modalidade-titulo,
+.treino-duracao-titulo {
+    font-size: 18px;
+    color: #6C757D;
+    margin-bottom: 5px;
+    display: flex;
+}
+
+.treino-modalidade {
+    font-size: 18px;
+    color: #396C3B;
+    border: 1px solid #396C3B;
+    border-radius: 15px;
+    padding: 5px 10px;
+    background-color: #f5f5f5;
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.treino-duracao {
+    font-size: 30px;
+    color: #396C3B;
+    margin-bottom: 25px;
 }
