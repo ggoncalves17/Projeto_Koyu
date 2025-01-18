@@ -6,12 +6,13 @@ from .forms import UtilizadorForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-<<<<<<< HEAD
 from django.contrib.auth import logout
-
-=======
->>>>>>> fd60aebf4e593914e81b6293695a82a8fed8a55d
 from django.http import HttpResponse
+
+# Página inicial
+@login_required
+def homepage(request):
+    return render(request, 'projeto_koyu/index.html', context={'message': 'Bem-vindo!'})
 
 # View de login
 def login_view(request):

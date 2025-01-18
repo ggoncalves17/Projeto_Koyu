@@ -36,7 +36,7 @@
 										fill="white" fill-opacity="0.5" />
 								</svg></span> Exercícios</li>
 					</a>
-					<a href="" class="navlink">
+					<a href="{% url 'listar_treinos' %}" class="navlink">
 						<li><span class="icon"><svg width="40" height="30" viewBox="0 0 38 50" fill="none"
 									xmlns="http://www.w3.org/2000/svg">
 									<path
@@ -96,7 +96,6 @@
                             <p>{{utilizador.ut_nome}}</p>
                         </div>
                         <div class="button-div">
-
                             <a href="{% url 'detalhes_utilizador' utilizador.id %}">
                                 <button>Ver detalhes</button>
                             </a> 
@@ -106,8 +105,6 @@
                                     <path d="M1.65395 8.267V24.8C1.65527 25.238 1.82985 25.6577 2.13956 25.9674C2.44927 26.2771 2.86896 26.4517 3.30695 26.453H18.187C18.625 26.4517 19.0446 26.2771 19.3543 25.9674C19.6641 25.6577 19.8386 25.238 19.84 24.8V8.267H1.65395ZM6.61395 23.147H4.96095V11.572H6.61395V23.147ZM9.92095 23.147H8.26695V11.572H9.91995L9.92095 23.147ZM13.228 23.147H11.574V11.572H13.227L13.228 23.147ZM16.535 23.147H14.881V11.572H16.534L16.535 23.147ZM20.255 3.307H14.881V1.24C14.8799 0.911456 14.7489 0.59667 14.5166 0.364353C14.2843 0.132036 13.9695 0.00105472 13.641 0H7.85395C7.52541 0.00105472 7.21062 0.132036 6.97831 0.364353C6.74599 0.59667 6.61501 0.911456 6.61395 1.24V3.307H1.24095C0.912583 3.30832 0.598052 3.43942 0.365951 3.6717C0.13385 3.90399 0.00300634 4.21863 0.00195312 4.547V6.613H21.494V4.547C21.4929 4.21846 21.3619 3.90367 21.1296 3.67135C20.8973 3.43904 20.5835 3.30805 20.255 3.307ZM13.228 3.307H8.26795V1.672H13.228V3.307Z" fill="#78997A"/>
                                 </svg>
                             </button>
-
-                            <button onclick="location.href='http://127.0.0.1:8000/listar_utilizadores'">Ver detalhes</button>                            
                         </div>
                     </div>
                 {% endif %}
@@ -115,7 +112,7 @@
         </div>
 
         <div id="popup-confirmacao" class="popup-confirmacao" style="display: none;">
-            <div class="message">Deseja mesmo confirmar as alterações?</div>
+            <div class="message">Deseja mesmo remover o utilizador?</div>
             <div class="popup-buttons">
                 <button class="confirmar" onclick="confirmarAcao()">Confirmar</button>
                 <button class="cancelar" onclick="closePopup('popup-confirmacao')">Cancelar</button>
