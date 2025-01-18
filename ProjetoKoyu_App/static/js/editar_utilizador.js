@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const tipoUtilizador = document.getElementById("tipo-utilizador");
     const btnCancelar = document.getElementById("btnCancelar");
 
-    
     // Define o estado inicial com base no valor de ut_tipo
     let isUtilizador = tipoUtilizador.value === "Utilizador";
 
