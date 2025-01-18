@@ -168,17 +168,17 @@ body {
     text-align: left; 
 }
 
-.exercise-card .details p {
+.exercise-card .details h3 {
     margin-bottom: 5px;
-    font-weight: bolder;
-    color: #78997A;
+    font-size: 23px;
+    color: #396C3B;
+    font-weight: bold;
     text-align: left; 
 }
 
 .exercise-card p.materials strong {
     color: #78997A; 
 }
-
 
 .button-div{
     display: inline;
@@ -353,6 +353,7 @@ body {
     color:#2D8A3E;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     font-size: large;
+    cursor: pointer;
 }
 
 #search-bar{

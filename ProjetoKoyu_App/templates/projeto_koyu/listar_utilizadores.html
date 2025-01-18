@@ -28,7 +28,7 @@
 										fill="white" />
 								</svg></span> Dashboard</li>
 					</a>
-					<a href="" class="navlink">
+					<a href="{% url 'listar_exercicios' %}" class="navlink">
 						<li><span class="icon"><svg width="40" height="35" viewBox="0 0 63 45" fill="none"
 									xmlns="http://www.w3.org/2000/svg">
 									<path
@@ -133,7 +133,7 @@
 
             for(let i = 0; i < userCards.length; i++){
                 let userName = userCards[i].getAttribute('ut_nome');
-                if(termoPesquisa == "" || userName.toLowerCase() == termoPesquisa){
+                if(termoPesquisa == "" || userName.toLowerCase().includes(termoPesquisa)){
                     userCards[i].style.display=""
                 }
                 else{

@@ -8,6 +8,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.http import HttpResponse
+import os
+from django.core.files.storage import FileSystemStorage
+from django.utils import timezone
 
 # Página inicial
 @login_required
@@ -95,12 +98,28 @@ def adicionar_utilizador_view(request):
         else:
             nif=0
 
+        foto = request.FILES.get('fotoPerfil')
+
         # Verifica se o utilizador já existe
         if Utilizador.objects.filter(ut_mail=email).exists():
             messages.error(request, "Utilizador já existe!")
         elif nif and not nif.isdigit():
             messages.error(request, "NIF deve conter apenas números.")
         else:
+            if foto is None:
+                foto = "profile_picture.jpeg"
+            else:
+                pasta = "ProjetoKoyu_App\static\images\listar_utilizadores\ProfilePhotos"
+                if not os.path.exists(pasta):
+                    os.makedirs(pasta)
+
+                timestamp = timezone.now().strftime('%Y%m%d%H%M%S')
+
+                nome_foto = f"{nome}_{timestamp}_{foto.name}"
+
+                fs = FileSystemStorage(location=pasta)
+                fs.save(nome_foto, foto)
+
             user = Utilizador.objects.create_user(
                 email=email, 
                 password="teste", 
@@ -109,7 +128,7 @@ def adicionar_utilizador_view(request):
                 ut_nif=nif,
                 ut_tipo=tipo_utilizador, 
                 ut_estado=1,
-                ut_foto="profile_picture.jpeg"
+                ut_foto=nome_foto
             )
             return redirect("/listar_utilizadores")
 
@@ -123,9 +142,9 @@ def detalhes_utilizador_view(request, id):
     if request.method == 'POST':
         # Verifica a ação enviada
         if request.POST.get('acao') == 'alternar_estado':
-            user.ut_estado = 0 if user.ut_estado == 1 else 1  # Alterna entre 0 e 1
+            user.ut_estado = 2 if user.ut_estado == 1 else 1  # Alterna entre 2 (Inativo) e 1 (Ativo)
             user.save()
-            estado = "desativado" if user.ut_estado == 0 else "ativado"
+            estado = "desativado" if user.ut_estado == 2 else "ativado"
             messages.success(request, f"O estado do utilizador {user.ut_nome} foi {estado} com sucesso!")
             return redirect('detalhes_utilizador', id=user.id)
 
@@ -158,12 +177,10 @@ def editar_utilizador_view(request, id):
         user.ut_telefone = contacto
         user.ut_nif = nif
         user.ut_tipo = tipo_utilizador
-        user.ut_foto = "nada"
+        user.ut_foto = "profile_picture.jpeg"
         user.save()
         messages.success(request, "Utilizador atualizado com sucesso!")
-        return redirect("/")  # Redireciona para a página inicial ou outra página desejada
-
-    # Renderiza o formulário com os dados do utilizador
+        return redirect("/listar_utilizadores")  
     return render(request, 'projeto_koyu/editar_utilizador.html', {"user": user})
   
 @login_required
