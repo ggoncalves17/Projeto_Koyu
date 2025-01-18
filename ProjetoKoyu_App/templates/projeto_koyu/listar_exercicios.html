@@ -96,7 +96,7 @@
             {% for exercicio in exercicios %}
             <div class="exercise-card" exercicio_nome="{{ exercicio.ex_nome }}">
                 <div class="details">
-                    <p>{{ exercicio.ex_nome }}</p>
+                    <h3>{{ exercicio.ex_nome }}</h3>
                 </div>
                 <p class="materials"><strong>Material</strong></p>
                 <div class="materials">
@@ -130,7 +130,7 @@
             </div>
         </div>
 
-        <a href="{% url 'adicionar_utilizador' %}">
+        <a href="#">
             <button id="add-button">+</button>
         </a> 
     </div>

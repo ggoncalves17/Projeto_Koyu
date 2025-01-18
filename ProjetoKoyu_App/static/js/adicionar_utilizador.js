@@ -50,3 +50,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+function closePopup(popupId) {
+    const popup = document.getElementById(popupId);
+    popup.style.display = "none";
+    console.log("Cliquei no x!")
+}
+
+//Referência -> https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
+function previewImage(event) { 
+    var output = document.getElementById('imagem-preview'); 
+    output.src = window.URL.createObjectURL(event.target.files[0]); 
+    output.style.display = 'block'; 
+}
+        
