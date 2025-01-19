@@ -232,23 +232,22 @@
         let filtroMostrado = false;
         let filter = document.getElementById("filter-menu-id");
         filter.style.display = "none";
+
         duracaoFiltroElemento.addEventListener("input", function(){
             aplicarFiltro("");
         });
         intensidadeFiltroElemento.addEventListener("input", function(){
             aplicarFiltro("");
-        })
+        });
 
         function mostrarFiltro() {
             if (filtroMostrado) {
                 filter.style.display = "none";
                 filtroMostrado = false;
-            }
-            else {
-                filter.style.display = "";
+            } else {
+                filter.style.display = "block";  // Altere para "block" para exibir a seção
                 filtroMostrado = true;
             }
-
         }
 
         function aplicarFiltro(modalidade){
@@ -258,62 +257,37 @@
             
             if(intensidadeFiltro == 1){
                 intensidadeFiltro = "Baixa";
-            } 
-            else if(intensidadeFiltro == 2){
+            } else if(intensidadeFiltro == 2){
                 intensidadeFiltro = "Media";
-            }
-            else if(intensidadeFiltro == 3){
+            } else if(intensidadeFiltro == 3){
                 intensidadeFiltro = "Alta";
             }
 
             for (let i = 0; i < treinosCards.length; i++) {
                 let treinosCategoria = treinosCards[i].dataset.categoria;
-                console.log(treinosCategoria); // Imprime el valor de data-categoria
+                console.log(treinosCategoria); // Imprime o valor de data-categoria
             }
 
-
             for(let i = 0; i < treinosCards.length; i++){
-                //let treinosCategoria = JSON.parse(treinosCards[i].dataset.categoria)
-                //treinosCategoria.forEach(element => {
-                //    console.log(element.ca_nome);
-                //});
                 let duracaoTreino = treinosCards[i].getAttribute('duracao');
                 let intensidadeTreino = treinosCards[i].getAttribute('intensidade');
                 let modalidadeTreino = treinosCards[i].getAttribute('modalidade');
-                console.log("duracaoTreino");
-                console.log(duracaoTreino);
-                console.log("intensidadeTreino");
-                console.log(intensidadeTreino);
-                console.log("duracaoFiltro");
-                console.log(duracaoFiltro);
-                console.log("intensidadeFiltro");
-                console.log(intensidadeFiltro);
-                console.log("modalidadeTreino");
-                console.log(modalidadeTreino.toLowerCase());
-                console.log("modalidadeFiltro");
-                console.log(modalidade.toLowerCase());
                 if(modalidade == ""){
                     if((parseInt(duracaoTreino) < parseInt(duracaoFiltro)) && intensidadeTreino == intensidadeFiltro){
-                    treinosCards[i].style.display=""
+                        treinosCards[i].style.display = "";
+                    } else {
+                        treinosCards[i].style.display = "none";
                     }
-                    else{
-                        treinosCards[i].style.display="none";
-                    }
-                }
-                else{
+                } else {
                     if((parseInt(duracaoTreino) < parseInt(duracaoFiltro)) && (intensidadeTreino == intensidadeFiltro) && (modalidadeTreino.toLowerCase() == modalidade.toLowerCase())){
-                        treinosCards[i].style.display=""
-                        console.log("É da modalidade");
-                    }
-                    else{
-                        treinosCards[i].style.display="none";
-                        console.log("Não é da modalidade");
+                        treinosCards[i].style.display = "";
+                    } else {
+                        treinosCards[i].style.display = "none";
                     }
                 }
-                
             }
-
         }
+
 
         function filtro(){
             let searchBar = document.getElementById('search-bar');

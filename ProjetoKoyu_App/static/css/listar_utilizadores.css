@@ -384,7 +384,7 @@ a {
     padding-top: 5px;
     height: 90%;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .filter-menu h2 {
