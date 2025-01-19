@@ -84,7 +84,7 @@
                     <circle cx="10" cy="10" r="6" stroke="#ffffff" stroke-width="2" fill="none"/>
                     <line x1="14" y1="14" x2="20" y2="20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
                 </svg>                  
-                <input id="search-bar" type="text" placeholder="Pesquisar..." onkeyup="filtro()">
+                <input id="search-bar-utilizadores" type="text" placeholder="Pesquisar..." onkeyup="filtro()">
             </div>
         </div>
         <div class="main-body"> 
@@ -127,7 +127,7 @@
     <!-- Script para filtrar utilizadores -->
     <script>
         function filtro(){
-            let searchBar = document.getElementById('search-bar');
+            let searchBar = document.getElementById('search-bar-utilizadores');
             let termoPesquisa = searchBar.value.toLowerCase();
             let userCards = document.getElementsByClassName('user-card');
 

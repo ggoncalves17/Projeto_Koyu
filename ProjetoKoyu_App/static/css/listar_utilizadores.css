@@ -287,21 +287,31 @@ a {
     color: #396C3B;
     margin-bottom: 25px;
 }
+ 
+#filtagremIcon {
+    margin-left: 2px;
+    margin-bottom: -10px;
+}
 
-/* Search Bar */
+#search-bar-utilizadores{
+    background: #2D8A3E;
+    color: white;
+    border-radius: 40px;
+    width: 40vh;
+    padding-left: 50px;
+}
 
-.search {
+#search-bar-utilizadores::placeholder{
+    color: white;
+}
+
+.search-treinos {
     width: 390px;
     height: 30px;
     background-color: white;
     border-radius: 40px;
     border-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-  
-#filtagremIcon {
-    margin-left: 2px;
-    margin-bottom: -10px;
 }
 
 #search-bar {
@@ -323,10 +333,6 @@ a {
     position: absolute;
     margin-left: 10px;
 }
-
-/* Search Bar */
-
-/* Filtro */
 
 #duracao-text{
     font-size: 18px;

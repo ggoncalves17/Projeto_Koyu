@@ -58,8 +58,8 @@ function closePopup(popupId) {
 }
 
 //Referência -> https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
-function previewImage(event) { 
-    var output = document.getElementById('imagem-preview'); 
+function previewImage(event, nome) { 
+    var output = document.getElementById(nome); 
     output.src = window.URL.createObjectURL(event.target.files[0]); 
     output.style.display = 'block'; 
 }

@@ -159,6 +159,8 @@ def editar_utilizador_view(request, id):
         email = request.POST.get('email')
         contacto = request.POST.get('contacto')
         tipo_utilizador = request.POST.get('tipo_utilizador')  
+        foto = request.FILES.get('fotoPerfil')
+
         if tipo_utilizador == "Utilizador":
             nif = request.POST.get('nif')
 
@@ -171,13 +173,22 @@ def editar_utilizador_view(request, id):
         
         nif = int(nif) if nif and nif != "0" else 0
         
+        timestamp = timezone.now().strftime('%Y%m%d%H%M%S')
+
+        pasta = "ProjetoKoyu_App\static\images\listar_utilizadores\ProfilePhotos"
+
+        nome_foto = f"{nome}_{timestamp}_{foto.name}"
+
+        fs = FileSystemStorage(location=pasta)
+        fs.save(nome_foto, foto)
+        
         # Atualiza os campos do utilizador
         user.ut_nome = nome
         user.ut_mail = email
         user.ut_telefone = contacto
         user.ut_nif = nif
         user.ut_tipo = tipo_utilizador
-        user.ut_foto = "profile_picture.jpeg"
+        user.ut_foto = nome_foto
         user.save()
         messages.success(request, "Utilizador atualizado com sucesso!")
         return redirect("/listar_utilizadores")  

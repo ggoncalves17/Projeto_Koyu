@@ -100,7 +100,7 @@
                                     </svg></span>
                             </div>
                         </div>
-                        <div class="texto-inferior" id="texto-inferior">Administrador</div>
+                        <div class="texto-inferior" id="texto-inferior">Gestor</div>
                     </div>
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
@@ -112,7 +112,7 @@
                                     </svg>
                                 </label>
                                 <img id="imagem-preview">
-                                <input type="file" onchange="previewImage(event)" accept="image/*" id="upload-foto" name="fotoPerfil" hidden>
+                                <input type="file" onchange="previewImage(event, 'imagem-preview')" accept="image/*" id="upload-foto" name="fotoPerfil" hidden>
                             </div>
                         </div>
                         <div class="caixas">
