@@ -11,6 +11,7 @@ from django.http import HttpResponse
 import os
 from django.core.files.storage import FileSystemStorage
 from django.utils import timezone
+from django.contrib.auth.hashers import make_password, check_password
 
 # Página inicial
 @login_required
@@ -79,6 +80,72 @@ def dashboard(request):
     return render(request, 'projeto_koyu/dashboard.html',{'n_utilizadores':n_utilizadores,'n_exercicios':n_exercicios,'n_treinosrealizados':n_treinosrealizados,
                                                           'ultimos_treinos':ultimos_treinos,'ultimos_exercicios':ultimos_exercicios,
                                                           'ultimos_users':ultimos_users,'ultimos_equipamentos':ultimos_equipamentos})
+
+#Funcoes relativas à pagina detalhes utilizador
+@login_required
+def detalhes_perfil(request):
+    user = request.user
+    
+    if request.method == "POST":
+
+        nome = request.POST.get('nome')
+        email = request.POST.get('email')
+        telefone = request.POST.get('telefone')  # Assumindo que telefone está num campo extra do modelo User
+            
+        # Validações básicas (opcional)
+        if not nome or not email:
+            messages.error(request, "Nome e Email são obrigatórios.")
+            return render(request, 'projeto_koyu/detalhes_perfil.html', {'user': user})
+            
+        # Atualiza os dados do utilizador
+        user.ut_nome = nome
+        user.ut_mail = email
+        user.ut_telefone = telefone 
+        user.save()
+        messages.success(request, "Dados atualizados com sucesso!")
+        return redirect('detalhes_perfil')
+        
+    return render(request, 'projeto_koyu/detalhes_perfil.html', {'user': user})
+
+@login_required
+def apagar_conta(request, ut_id):
+    utilizador = get_object_or_404(Utilizador, id=ut_id)
+    utilizador.ut_estado = 0
+    utilizador.save()
+    messages.success(request, "Conta apagada com sucesso.")
+    return redirect('login')
+
+#Funcoes alterar password
+@login_required
+def alterar_password(request, user_id):
+    user = get_object_or_404(Utilizador, id=user_id)  # Substitua Utilizador pelo nome correto do modelo
+
+    if request.method == "POST":
+        # Obter os dados do formulário
+        password_atual = request.POST.get('password_atual')
+        nova_password = request.POST.get('nova_password')
+        confirma_password = request.POST.get('confirma_password')
+
+        # Verificar se a senha atual está correta
+        if not check_password(password_atual, user.password):
+            messages.error(request, "A senha atual está incorreta.")
+            return render(request, 'projeto_koyu/detalhes_perfil.html', {'user': user, 'popup_password_open': True})
+
+        # Verificar se a nova senha e a confirmação coincidem
+        if nova_password != confirma_password:
+            messages.error(request, "A nova senha e a confirmação não coincidem.")
+            return render(request, 'projeto_koyu/detalhes_perfil.html', {'user': user, 'popup_password_open': True})
+
+        # Atualizar a senha na base de dados (encriptada)
+        user.password = make_password(nova_password, hasher='default')  
+        user.save()
+
+        messages.success(request, "Senha alterada com sucesso!")
+        return redirect('detalhes_perfil')
+
+    return redirect('detalhes_perfil')
+
+
 
 #Funcoes relativas a pagina listar utilizadores
 @login_required
