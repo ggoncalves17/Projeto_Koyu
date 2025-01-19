@@ -1,0 +1,247 @@
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.main-header .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2D8A3E;
+}
+
+#barra-vertical{
+    width: 4px;
+    height: 50px;
+    background-color: #78997a;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#imagem-preview{
+    display: block;
+}
+
+.conteudo h1 {
+    font-size: 36px;
+    color: #379A3C;
+    margin-bottom: 30px;
+}
+
+.perfil-detalhes {
+    background-color: #E8F5E9;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+
+.perfil-detalhes .foto {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #379A3C;
+    background-color: #e0e0e0;
+}
+
+
+
+.perfil-detalhes .foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.perfil-detalhes .subtitulo{
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    color:#5e7a60;
+    margin:0;
+}
+
+.perfil-detalhes .btn-password{
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #379A3C;
+    border-radius: 0 20px 0 10px;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.flex-group{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.flex-group .form-group{
+    flex-wrap: wrap;
+}
+
+.flex-group .form-group input{
+    width: auto;
+}
+
+.formulario {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.formulario .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.formulario label {
+    font-size: 16px;
+    color: #6C757D;
+}
+
+.formulario input {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 20px;
+    background: #bddfbe;
+    border: none;
+    outline: none;
+    transition: border-color 0.3s;
+    color: #417c41;
+}
+
+.formulario input:focus {
+    border-color: #379A3C;
+    outline: none;
+}
+
+.formulario button {
+    background-color: #379A3C;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.formulario button:hover {
+    background-color: #2E7D32;
+}
+
+.btn-danger {
+    background-color: #D32F2F;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.btn-danger:hover {
+    background-color: #B71C1C;
+}
+
+#popup-password{
+    padding: 40px 30px;
+}
+
+
+#popup-password .popup-buttons{
+    flex-direction: column;
+    margin-bottom: 30px;;
+}
+
+#popup-password .message{
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#popup-password input{
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 20px;
+    background: #bddfbe;
+    border: none;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#popup-password .form-group{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+#popup-password .acoes{
+    display: flex;
+    gap: 20px;
+    width: 90%;
+    margin: auto;
+}
+
+#popup-password .cancelar{
+    border: none;
+    outline: none;
+    box-shadow: -2px 0px 14px rgba(0, 0, 0, 0.1);
+}
+
+.messages-perfil{
+    background-color: #c7c7c7;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    margin: 0 0 20px 0;
+}
+
+#popup-password .messages{
+    background-color: #ec8181;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin: 0 0 20px 0;
+}
+
+#popup-password button{
+    width: 49%;
+}
+
+#popup-password form{
+    width: 100%;
+}
+
+#popup-password .btn-primary{
+    border: 1px solid #2e7d32;
+    color: #ffffff;
+    background-color: #2e7d32;
+    height: 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: -2px 0px 14px rgba(0, 0, 0, 0.1);
+}
