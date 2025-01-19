@@ -1,0 +1,346 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+.container {
+    display: flex;
+    height: 100vh;
+  }
+
+.logo-titulo {
+    display: flex;
+    align-items: center;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.conteudo {
+    width: 80%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    color: #379A3C;
+    font-weight: normal;
+}
+
+.btn-cancelar {
+    background-color: white; 
+    color: #379A3C; 
+    border: 0px solid #379A3C;
+    border-radius: 25px; 
+    padding: 10px 40px; 
+    margin-right: 20px;
+    font-weight: bold;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+}
+
+.btn-cancelar:hover {
+    background-color: #379A3C; 
+    color: white; 
+    font-weight: bold;
+    font-family: "Segoe UI", Arial, sans-serif;
+    border: 0px solid #379A3C;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.foto-seletor {
+    display: flex; 
+    align-items: center; 
+    gap: 30px; 
+    margin-bottom: 20px;
+}
+
+.foto-upload {
+    position: relative;
+    width: 150px;
+    height: 150px; 
+    margin: 0 auto; 
+}
+
+.circulo-foto {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid #379A3C; 
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    overflow: hidden; 
+    position: relative; 
+}
+
+.circulo-foto img {
+    width: 90%; 
+    height: 90%; 
+    object-fit: cover; 
+    border-radius: 50%;
+}
+
+.upload-icon {
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.seletor-tipo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.texto-superior, .texto-inferior {
+    font-size: 16px;
+    font-weight: bold;
+    color: #D7EBD8;
+    font-family: "Segoe UI", Arial, sans-serif;
+    transition: color 0.3s ease;
+}
+
+.texto-superior.ativo, .texto-inferior.ativo {
+    color: #379A3C; 
+}
+
+.switch {
+    position: relative;
+    width: 80px;
+    height: 40px;
+    background-color: #379A3C;
+    border-radius: 25px;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+}
+
+.icone-fundo {
+    position: absolute;
+    font-size: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    opacity: 0.3;
+}
+
+.icone-fundo.esquerdo {
+    left: 15px;
+}
+
+.icone-fundo.direito {
+    right: 15px;
+}
+
+.circle {
+    position: absolute;
+    top: 2.5px;
+    left: 2.5px;
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: left 0.3s ease;
+}
+
+.icone {
+    font-size: 20px;
+    color: #379A3C;
+}
+
+.caixas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.input-group input {
+    padding: 15px;
+    border: 0px solid #379A3C;
+    font-size: 16px;
+    border-radius: 25px;
+    background-color: #e8f5e9;
+    width: 400px; 
+    max-width: 100%; 
+    box-sizing: border-box; 
+}
+
+.input-group {
+    flex: none; 
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    align-items: flex-start; 
+}
+
+.input-group label {
+    margin-left: 5px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight:600;
+    color: #78997A;
+}
+
+#campo-nif {
+    display: flex; 
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn-registar {
+    background-color: #379A3C;
+    color: white;
+    font-size: 16px; 
+    border: none;
+    padding: 15px 90px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 25px;
+    margin-top: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+}
+
+.botoes-acao {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.btn-desativar {
+    background-color: white;
+    color: #D32F2F;
+    border-radius: 25px;
+    padding: 10px 45px;
+    font-size: 16px;
+    border: 3px solid #D32F2F; 
+    cursor: pointer;
+    font-weight: bold;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+}
+
+.btn-desativar:hover {
+    background-color: #D32F2F; 
+    color: white;
+}
+
+
+.btn-editar {
+    background-color: #379A3C;
+    color: white;
+    border-radius: 25px;
+    padding: 10px 45px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+}
+
+.btn-editar:hover {
+    background-color: #2E7D32;
+    color: white;
+}
+
+.historico-treino-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 20px 0;
+}
+
+.botao-historico {
+    position: relative;
+    width: 195px; 
+    height: 50px;
+    background-color: #379A3C;
+    border-radius: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+}
+
+.bola-historico {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    background-color: #D7EBD8;
+    border-radius: 50%;
+    left: 2px;
+    transition: left 0.4s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.texto-historico {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    margin-left: 45px;
+    transition: color 0.4s ease;
+}
+
+.botao-historico.ativo {
+    background-color: #2E7D32;
+}
+
+.botao-historico.ativo .bola-historico {
+    left: 167px;
+}
+
+.botao-historico.ativo .texto-historico {
+    color: #ffffff;
+}
+
+#imagem-preview {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 50%; 
+    display: none;
+}
