@@ -155,7 +155,7 @@
             <span id="duracao-text">Duração</span> <span id="minutos-text"> (Minutos) </span>
             <div class="filter-section">
                 <div class="slidebar-container" id="duration">
-                    <input type="range" min="15" max="105" step="15" id="duration-range" >
+                    <input type="range" min="15" max="105" step="15" id="duration-range">
                 </div>
                 <div class="range-labels">
                     <span></span>
@@ -222,6 +222,9 @@
                     {% endfor %}
                 </div>
             </div>  --> 
+
+            <button class="reset_filtros" onclick="resetarFiltros()">Resetar Filtros</button>
+
         </div>
     </div>
 
@@ -232,22 +235,23 @@
         let filtroMostrado = false;
         let filter = document.getElementById("filter-menu-id");
         filter.style.display = "none";
-
         duracaoFiltroElemento.addEventListener("input", function(){
             aplicarFiltro("");
         });
         intensidadeFiltroElemento.addEventListener("input", function(){
             aplicarFiltro("");
-        });
+        })
 
         function mostrarFiltro() {
             if (filtroMostrado) {
                 filter.style.display = "none";
                 filtroMostrado = false;
-            } else {
-                filter.style.display = "block";  // Altere para "block" para exibir a seção
+            }
+            else {
+                filter.style.display = "";
                 filtroMostrado = true;
             }
+
         }
 
         function aplicarFiltro(modalidade){
@@ -257,37 +261,73 @@
             
             if(intensidadeFiltro == 1){
                 intensidadeFiltro = "Baixa";
-            } else if(intensidadeFiltro == 2){
+            } 
+            else if(intensidadeFiltro == 2){
                 intensidadeFiltro = "Media";
-            } else if(intensidadeFiltro == 3){
+            }
+            else if(intensidadeFiltro == 3){
                 intensidadeFiltro = "Alta";
             }
 
             for (let i = 0; i < treinosCards.length; i++) {
                 let treinosCategoria = treinosCards[i].dataset.categoria;
-                console.log(treinosCategoria); // Imprime o valor de data-categoria
+                console.log(treinosCategoria); // Imprime el valor de data-categoria
             }
 
+
             for(let i = 0; i < treinosCards.length; i++){
+                //let treinosCategoria = JSON.parse(treinosCards[i].dataset.categoria)
+                //treinosCategoria.forEach(element => {
+                //    console.log(element.ca_nome);
+                //});
                 let duracaoTreino = treinosCards[i].getAttribute('duracao');
                 let intensidadeTreino = treinosCards[i].getAttribute('intensidade');
                 let modalidadeTreino = treinosCards[i].getAttribute('modalidade');
+                console.log("duracaoTreino");
+                console.log(duracaoTreino);
+                console.log("intensidadeTreino");
+                console.log(intensidadeTreino);
+                console.log("duracaoFiltro");
+                console.log(duracaoFiltro);
+                console.log("intensidadeFiltro");
+                console.log(intensidadeFiltro);
+                console.log("modalidadeTreino");
+                console.log(modalidadeTreino.toLowerCase());
+                console.log("modalidadeFiltro");
+                console.log(modalidade.toLowerCase());
                 if(modalidade == ""){
                     if((parseInt(duracaoTreino) < parseInt(duracaoFiltro)) && intensidadeTreino == intensidadeFiltro){
-                        treinosCards[i].style.display = "";
-                    } else {
-                        treinosCards[i].style.display = "none";
+                    treinosCards[i].style.display=""
                     }
-                } else {
-                    if((parseInt(duracaoTreino) < parseInt(duracaoFiltro)) && (intensidadeTreino == intensidadeFiltro) && (modalidadeTreino.toLowerCase() == modalidade.toLowerCase())){
-                        treinosCards[i].style.display = "";
-                    } else {
-                        treinosCards[i].style.display = "none";
+                    else{
+                        treinosCards[i].style.display="none";
                     }
                 }
+                else{
+                    if((parseInt(duracaoTreino) < parseInt(duracaoFiltro)) && (intensidadeTreino == intensidadeFiltro) && (modalidadeTreino.toLowerCase() == modalidade.toLowerCase())){
+                        treinosCards[i].style.display=""
+                        console.log("É da modalidade");
+                    }
+                    else{
+                        treinosCards[i].style.display="none";
+                        console.log("Não é da modalidade");
+                    }
+                }
+                
             }
         }
 
+        function resetarFiltros() { 
+            duracaoFiltroElemento.value = 60; 
+            intensidadeFiltroElemento.value = 2; 
+            mostrarTodosTreinos(); 
+        } 
+        
+        function mostrarTodosTreinos(){ 
+            let treinosCards = document.getElementsByClassName('treinos-card'); 
+            for (let i = 0; i < treinosCards.length; i++)
+                treinosCards[i].style.display = ""; 
+        }
 
         function filtro(){
             let searchBar = document.getElementById('search-bar');
