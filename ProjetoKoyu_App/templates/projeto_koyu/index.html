@@ -1,4 +1,3 @@
-{% extends "base.html" %}
 {% load static %}
 
 {% block content %}
@@ -9,9 +8,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Koyu</title>
+    <style>
+
+        body {
+            overflow: hidden;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+
+        .logo img {
+            width: 800px;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
-<body>  
-    <h1>{{ message }}</h1>
+<body>
+    <div class="logo">
+        <img src="{% static 'images/GP_LogótipoVerde.png' %}" alt="Logo">
+    </div>
 </body>
 </html>
 

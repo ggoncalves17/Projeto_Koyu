@@ -8,8 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const campoContacto = document.getElementById("campo-contacto");
     const tipoUtilizador = document.getElementById("tipo-utilizador"); 
     const btnCancelar = document.getElementById("btnCancelar");
+    const inputNIF = document.getElementById('nif'); 
 
     let isUtilizador = true; // Estado inicial (assume que começa como Utilizador)
+    inputNIF.setAttribute('required', 'true');
 
     switchElement.addEventListener("click", () => {
         if (isUtilizador) {
@@ -25,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
             campoNIF.style.display = "none";
             campoContacto.classList.add("centered");
             tipoUtilizador.value = "Gestor"; 
+            inputNIF.removeAttribute('required');
         } else {
             // Mudar para Utilizador
             circle.style.left = "2.5px";
@@ -38,8 +41,10 @@ document.addEventListener("DOMContentLoaded", () => {
             campoNIF.style.display = "flex";
             campoContacto.classList.remove("centered");
             tipoUtilizador.value = "Utilizador";
+            inputNIF.setAttribute('required', 'true');
         }
-        isUtilizador = !isUtilizador;
+        isUtilizador = !isUtilizador;    
+
     });
 
     // Redireciona para listar utilizadores ao clicar no botão Cancelar
@@ -63,4 +68,3 @@ function previewImage(event, nome) {
     output.src = window.URL.createObjectURL(event.target.files[0]); 
     output.style.display = 'block'; 
 }
-        
