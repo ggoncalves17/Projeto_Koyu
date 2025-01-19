@@ -18,8 +18,10 @@
         <!-- Menu Lateral -->
         <aside class="menu-lateral">
             <div class="perfil">
-                <div class="foto-perfil"></div>
-                <p>Bem-vindo,<br><span>USER_NAME</span></p>
+                <div class="foto-perfil">
+                    <img src="{% static 'images/listar_utilizadores/ProfilePhotos/' %}{{ user.ut_foto }}" alt="Foto Perfil" id="foto-utilizador">
+                </div>
+				<p>Bem-vindo,<br><span>{{ user.ut_nome }}</span></p>
             </div>
             <nav class="menu">
 				<ul>
