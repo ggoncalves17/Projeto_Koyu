@@ -107,7 +107,7 @@ def adicionar_utilizador_view(request):
             messages.error(request, "NIF deve conter apenas números.")
         else:
             if foto is None:
-                foto = "profile_picture.jpeg"
+                nome_foto = "profile_picture.jpeg"
             else:
                 pasta = "ProjetoKoyu_App\static\images\listar_utilizadores\ProfilePhotos"
                 if not os.path.exists(pasta):
