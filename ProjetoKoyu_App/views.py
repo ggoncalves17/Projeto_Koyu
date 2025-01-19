@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
-from .models import Equipamento, Exercicios, Historico, PlanoTreinos, Utilizador, UtilizadorManager
+from .models import Equipamento, Exercicios, Historico, PlanoTreinos, Utilizador, UtilizadorManager, Modalidade, Categoria
 from .forms import UtilizadorForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
@@ -191,10 +191,11 @@ def apagar_utilizador(request, ut_id):
     return redirect('listar_utilizadores')
   
 #Funcoes relativas a pagina listar treinos
-@login_required
 def listar_treinos(request):
-    treinos = PlanoTreinos.objects.all().order_by('id')  # Obtém todos os treinos
-    return render(request, 'projeto_koyu/listar_treinos.html', {'treinos': treinos})
+    treinos = PlanoTreinos.objects.prefetch_related('modalidade').all().order_by('id')  # Obtém todos os treinos
+    modalidades = Modalidade.objects.all()
+    categorias = Categoria.objects.prefetch_related('categoria_planostreino').all()
+    return render(request, 'projeto_koyu/listar_treinos.html', {'treinos': treinos, 'modalidades':modalidades, 'categorias':categorias})
   
 @login_required
 def eliminar_treino(request, treino_id):

@@ -82,26 +82,31 @@
                 <p style="font: size 20px; color: #78997a;"> Listar Treinos</p>
             </div>
             <div class="search-filter" style="display: flex; align-items: center; margin-top: 20px; box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1); border-radius: 25px; background-color: white;">
+            
+                <!-- Search Bar -->
                 <div class="search">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="#ffffff" id="svg-lupa">
-                        <circle cx="10" cy="10" r="6" stroke="#ffffff" stroke-width="2" fill="none"/>
-                        <line x1="14" y1="14" x2="20" y2="20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="10" cy="10" r="6" stroke="#ffffff" stroke-width="2" fill="none" />
+                        <line x1="14" y1="14" x2="20" y2="20" stroke="#ffffff" stroke-width="2" stroke- linecap="round" />
                     </svg>
                     <input id="search-bar" type="text" placeholder="Pesquisar..." onkeyup="filtro()">
-                </div>
-                <div class="filter">
-                    <button id="filter-button" style="margin-left: 10px; margin-right: 15px; background: transparent; border: none; cursor: pointer;">
-                        <svg width="20" height="20" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M31.5811 1.5H1.58105L13.5811 15.69V25.5L19.5811 28.5V15.69L31.5811 1.5Z" stroke="#396C3B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>                        
+                    <button type="submit"
+                        style="border: none; background: none; padding: 0; cursor: pointer; width:                 10px; height: 10px; margin-top:-15px"
+                        onclick="mostrarFiltro()">
+                        <svg xmlns="http://www.w3.org/2000/svg" id="filtagremIcon" width="28" height="28" viewBox="0 0 24 24"
+                            fill="none" stroke="#0f6d0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16l-6 8v5l-4 3v-8z"></path>
+                        </svg>
                     </button>
                 </div>
+                <!-- Search Bar -->
+                
             </div>
 
         </div>
        <div class="main-body"> 
             {% for treino in treinos %}
-            <div class="treinos-card" treino_nome="{{ treino.pt_nome }}">
+            <div class="treinos-card" treino_nome="{{ treino.pt_nome }}" modalidade="{{ treino.modalidade.ca_nome }}" duracao="{{treino.duracao}}" intensidade="{{treino.intensidade}}" data-categoria="{{categoria.categoria_planostreino.all}}">
                 <div class="card-header">
                     <h3 class="treino-nome">{{ treino.pt_nome }}</h3>
                 </div>
@@ -140,8 +145,191 @@
             </a> 
     </div>
 
+    <div class="filter-menu" id="filter-menu-id">
+        <div class="filter-title">
+            <h2>Filtragem</h2>
+        </div>
+
+        <div class="filter-container">
+            <!-- Duração -->
+
+            <span id="duracao-text">Duração</span> <span id="minutos-text"> (Minutos) </span>
+            <div class="filter-section">
+                <div class="slidebar-container" id="duration">
+                    <input type="range" min="15" max="105" step="15" id="duration-range">
+                </div>
+                <div class="range-labels">
+                    <span></span>
+                    <span>30</span>
+                    <span></span>
+                    <span>60</span>
+                    <span></span>
+                    <span>90</span>
+                    <span></span>
+                </div>
+            </div>
+
+
+            <!-- Intensidade -->
+            <h3>Intensidade</h3>
+            <div class="filter-section">
+                <div class="slidebar-container" id="intensity">
+                    <input type="range" min="1" max="3" step="1" id="intensity-range">
+                </div>
+                <div class="range-labels">
+                    <span>Baixa</span>
+                    <span>Média</span>
+                    <span>Alta</span>
+                </div>
+
+            </div>
+
+            <!-- Equipamento -->
+            
+            <!--  <h3>Equipamento</h3>
+            <div class="filter-section">
+                <div class="equipment-options">
+                    {% for equipamento in equipamentos %}
+                    <div class="equipment-item">
+                        <img src="{{ equipamento.eq_foto }}" class="img-equipment">
+                        <p id="equipment-text"> {{ equipamento.eq_nome }} </p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div> -->  
+
+            <!-- Modalidade -->
+            
+                <h3>Modalidade</h3>
+            <div class="filter-section">
+                <div class="modality-options">
+                    {% for modalidade in modalidades %}
+                    <div class="modality-item" onclick="aplicarFiltro('{{ modalidade.ca_nome }}')">
+                        <p>{{ modalidade.ca_nome }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Categoria -->
+            
+            <!--   <h3>Categoria</h3>
+            <div class="filter-section">
+                <div class="category-options">
+                    {% for categoria in categorias %}
+                    <div class="category-item">
+                        <p>{{ categoria.ca_nome }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>  --> 
+
+            <button class="reset_filtros" onclick="resetarFiltros()">Resetar Filtros</button>
+
+        </div>
+    </div>
+
     <!-- Script para filtrar utilizadores -->
     <script>
+        let duracaoFiltroElemento = document.getElementById('duration-range');
+        let intensidadeFiltroElemento = document.getElementById('intensity-range');
+        let filtroMostrado = false;
+        let filter = document.getElementById("filter-menu-id");
+        filter.style.display = "none";
+        duracaoFiltroElemento.addEventListener("input", function(){
+            aplicarFiltro("");
+        });
+        intensidadeFiltroElemento.addEventListener("input", function(){
+            aplicarFiltro("");
+        })
+
+        function mostrarFiltro() {
+            if (filtroMostrado) {
+                filter.style.display = "none";
+                filtroMostrado = false;
+            }
+            else {
+                filter.style.display = "";
+                filtroMostrado = true;
+            }
+
+        }
+
+        function aplicarFiltro(modalidade){
+            let treinosCards = document.getElementsByClassName('treinos-card');
+            let duracaoFiltro = duracaoFiltroElemento.value;
+            let intensidadeFiltro = intensidadeFiltroElemento.value;
+            
+            if(intensidadeFiltro == 1){
+                intensidadeFiltro = "Baixa";
+            } 
+            else if(intensidadeFiltro == 2){
+                intensidadeFiltro = "Media";
+            }
+            else if(intensidadeFiltro == 3){
+                intensidadeFiltro = "Alta";
+            }
+
+            for (let i = 0; i < treinosCards.length; i++) {
+                let treinosCategoria = treinosCards[i].dataset.categoria;
+                console.log(treinosCategoria); // Imprime el valor de data-categoria
+            }
+
+
+            for(let i = 0; i < treinosCards.length; i++){
+                //let treinosCategoria = JSON.parse(treinosCards[i].dataset.categoria)
+                //treinosCategoria.forEach(element => {
+                //    console.log(element.ca_nome);
+                //});
+                let duracaoTreino = treinosCards[i].getAttribute('duracao');
+                let intensidadeTreino = treinosCards[i].getAttribute('intensidade');
+                let modalidadeTreino = treinosCards[i].getAttribute('modalidade');
+                console.log("duracaoTreino");
+                console.log(duracaoTreino);
+                console.log("intensidadeTreino");
+                console.log(intensidadeTreino);
+                console.log("duracaoFiltro");
+                console.log(duracaoFiltro);
+                console.log("intensidadeFiltro");
+                console.log(intensidadeFiltro);
+                console.log("modalidadeTreino");
+                console.log(modalidadeTreino.toLowerCase());
+                console.log("modalidadeFiltro");
+                console.log(modalidade.toLowerCase());
+                if(modalidade == ""){
+                    if((parseInt(duracaoTreino) < parseInt(duracaoFiltro)) && intensidadeTreino == intensidadeFiltro){
+                    treinosCards[i].style.display=""
+                    }
+                    else{
+                        treinosCards[i].style.display="none";
+                    }
+                }
+                else{
+                    if((parseInt(duracaoTreino) < parseInt(duracaoFiltro)) && (intensidadeTreino == intensidadeFiltro) && (modalidadeTreino.toLowerCase() == modalidade.toLowerCase())){
+                        treinosCards[i].style.display=""
+                        console.log("É da modalidade");
+                    }
+                    else{
+                        treinosCards[i].style.display="none";
+                        console.log("Não é da modalidade");
+                    }
+                }
+                
+            }
+        }
+
+        function resetarFiltros() { 
+            duracaoFiltroElemento.value = 60; 
+            intensidadeFiltroElemento.value = 2; 
+            mostrarTodosTreinos(); 
+        } 
+        
+        function mostrarTodosTreinos(){ 
+            let treinosCards = document.getElementsByClassName('treinos-card'); 
+            for (let i = 0; i < treinosCards.length; i++)
+                treinosCards[i].style.display = ""; 
+        }
+
         function filtro(){
             let searchBar = document.getElementById('search-bar');
             let termoPesquisa = searchBar.value.toLowerCase();
@@ -180,6 +368,7 @@
             popup.style.display = "none";
             document.body.classList.remove('popup-aberto');
         }
+
     </script>
 
 </body>
