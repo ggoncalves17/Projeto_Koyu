@@ -211,13 +211,33 @@
     box-shadow: -2px 0px 14px rgba(0, 0, 0, 0.1);
 }
 
-.messages-perfil{
-    background-color: #c7c7c7;
+.messages-perfil {
     color: black;
     text-align: center;
-    padding: 10px;
     margin: 0 0 20px 0;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
 }
+
+.messages-perfil .alert {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.messages-perfil .alert.success {
+    background-color: #A8E6A3; 
+    border: 2px solid #4CAF50; 
+}
+
+.messages-perfil .alert.error {
+    background-color: #F8D7DA;
+    border: 2px solid #D32F2F;  
+}
+
+
 
 #popup-password .messages{
     background-color: #ec8181;
