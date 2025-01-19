@@ -90,17 +90,35 @@ def detalhes_perfil(request):
 
         nome = request.POST.get('nome')
         email = request.POST.get('email')
-        telefone = request.POST.get('telefone')  # Assumindo que telefone está num campo extra do modelo User
-            
+        telefone = request.POST.get('telefone')
+        foto = request.FILES.get('fotoPerfil')
+
+        if foto is None:
+            nome_foto = user.ut_foto
+            print(user.ut_foto)
+
         # Validações básicas (opcional)
         if not nome or not email:
             messages.error(request, "Nome e Email são obrigatórios.")
             return render(request, 'projeto_koyu/detalhes_perfil.html', {'user': user})
+        
+        if foto is None:
+            nome_foto = user.ut_foto
+        else:
+            timestamp = timezone.now().strftime('%Y%m%d%H%M%S')
+
+            pasta = "ProjetoKoyu_App\static\images\listar_utilizadores\ProfilePhotos"
+
+            nome_foto = f"{nome}_{timestamp}_{foto.name}"
+
+            fs = FileSystemStorage(location=pasta)
+            fs.save(nome_foto, foto)
             
         # Atualiza os dados do utilizador
         user.ut_nome = nome
         user.ut_mail = email
         user.ut_telefone = telefone 
+        user.ut_foto = nome_foto
         user.save()
         messages.success(request, "Dados atualizados com sucesso!")
         return redirect('detalhes_perfil')
@@ -126,21 +144,21 @@ def alterar_password(request, user_id):
         nova_password = request.POST.get('nova_password')
         confirma_password = request.POST.get('confirma_password')
 
-        # Verificar se a senha atual está correta
+        # Verificar se a password atual está correta
         if not check_password(password_atual, user.password):
-            messages.error(request, "A senha atual está incorreta.")
+            messages.error(request, "A password atual está incorreta.")
             return render(request, 'projeto_koyu/detalhes_perfil.html', {'user': user, 'popup_password_open': True})
 
-        # Verificar se a nova senha e a confirmação coincidem
+        # Verificar se a password senha e a confirmação coincidem
         if nova_password != confirma_password:
-            messages.error(request, "A nova senha e a confirmação não coincidem.")
+            messages.error(request, "A nova password e a confirmação não coincidem.")
             return render(request, 'projeto_koyu/detalhes_perfil.html', {'user': user, 'popup_password_open': True})
 
-        # Atualizar a senha na base de dados (encriptada)
+        # Atualizar a password na base de dados (encriptada)
         user.password = make_password(nova_password, hasher='default')  
         user.save()
 
-        messages.success(request, "Senha alterada com sucesso!")
+        messages.success(request, "Password alterada com sucesso!")
         return redirect('detalhes_perfil')
 
     return redirect('detalhes_perfil')
@@ -239,15 +257,18 @@ def editar_utilizador_view(request, id):
             nif = 0  
         
         nif = int(nif) if nif and nif != "0" else 0
-        
-        timestamp = timezone.now().strftime('%Y%m%d%H%M%S')
 
-        pasta = "ProjetoKoyu_App\static\images\listar_utilizadores\ProfilePhotos"
+        if foto is None:
+            nome_foto = user.ut_foto
+        else:
+            timestamp = timezone.now().strftime('%Y%m%d%H%M%S')
 
-        nome_foto = f"{nome}_{timestamp}_{foto.name}"
+            pasta = "ProjetoKoyu_App\static\images\listar_utilizadores\ProfilePhotos"
 
-        fs = FileSystemStorage(location=pasta)
-        fs.save(nome_foto, foto)
+            nome_foto = f"{nome}_{timestamp}_{foto.name}"
+
+            fs = FileSystemStorage(location=pasta)
+            fs.save(nome_foto, foto)
         
         # Atualiza os campos do utilizador
         user.ut_nome = nome
