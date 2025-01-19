@@ -48,3 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+function previewImage(event, nome) { 
+    var output = document.getElementById(nome); 
+    output.src = window.URL.createObjectURL(event.target.files[0]); 
+    output.style.display = 'block'; 
+}
